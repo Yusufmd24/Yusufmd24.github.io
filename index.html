@@ -1,1376 +1,933 @@
-```html
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Md Yusuf | Commercial Data Analyst</title>
-  <meta name="description" content="Commercial Data Analyst specialising in merchandising analytics, revenue intelligence, pricing strategy, Power BI, SQL, and business-focused analytics." />
-  <meta property="og:title" content="Md Yusuf | Commercial Data Analyst" />
-  <meta property="og:description" content="Business-first analytics portfolio focused on revenue, margin, merchandising, and commercial intelligence." />
-  <meta property="og:type" content="website" />
-
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" />
-
+  <title>Md Yusuf — Data Analyst Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
-
   <style>
+    /* ─── Design Tokens ─────────────────────────────── */
     :root {
-      --bg:#0b0d10;
-      --bg2:#13161c;
-      --bg3:#1a1e27;
-      --border:#232733;
-      --text:#e8eaf0;
-      --muted:#8a93a5;
-      --accent:#f59e0b;
-      --accent2:#fbbf24;
+      --bg:        #0b0d10;
+      --bg2:       #13161c;
+      --bg3:       #1a1e27;
+      --border:    #232733;
+      --text:      #e8eaf0;
+      --muted:     #6b7280;
+      --accent:    #f59e0b;
+      --accent2:   #fbbf24;
       --accent-dim:#3d2e0a;
-      --green:#10b981;
-      --danger:#ef4444;
-      --card:#13161c;
-      --nav-bg:rgba(11,13,16,0.92);
+      --green:     #10b981;
+      --card-bg:   #13161c;
+      --nav-bg:    rgba(11,13,16,0.92);
     }
-
     [data-theme="light"] {
-      --bg:#f7f5f0;
-      --bg2:#ece9df;
-      --bg3:#e2ddd1;
-      --border:#d8d3c8;
-      --text:#111827;
-      --muted:#6b7280;
-      --accent:#d97706;
-      --accent2:#b45309;
-      --accent-dim:#fff1cf;
-      --green:#059669;
-      --card:#ece9df;
-      --nav-bg:rgba(247,245,240,0.92);
-    }
-
-    *{margin:0;padding:0;box-sizing:border-box}
-
-    html{
-      scroll-behavior:smooth;
-      font-size:16px;
-    }
-
-    body{
-      font-family:'DM Mono', monospace;
-      background:var(--bg);
-      color:var(--text);
-      overflow-x:hidden;
-      line-height:1.7;
-      transition:.3s;
-    }
-
-    body::before{
-      content:'';
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      opacity:.25;
-      background-image: radial-gradient(circle at 1px 1px, var(--border) 1px, transparent 0);
-      background-size:40px 40px;
-      z-index:0;
-    }
-
-    a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
-
-    .wrapper{
-      position:relative;
-      z-index:1;
-      max-width:1200px;
-      margin:auto;
-      padding:0 clamp(1.5rem,4vw,3rem);
-    }
-
-    nav{
-      position:fixed;
-      top:0;
-      left:0;
-      right:0;
-      height:70px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:0 clamp(1.5rem,5vw,4rem);
-      background:var(--nav-bg);
-      backdrop-filter:blur(14px);
-      border-bottom:1px solid var(--border);
-      z-index:1000;
-    }
-
-    .logo{
-      font-family:'Syne',sans-serif;
-      font-size:1.2rem;
-      font-weight:800;
-      color:var(--accent);
-    }
-
-    .nav-links{
-      display:flex;
-      list-style:none;
-      gap:2rem;
-      font-size:.75rem;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-    }
-
-    .nav-links a{
-      color:var(--muted);
-      transition:.2s;
-    }
-
-    .nav-links a:hover{
-      color:var(--accent);
-    }
-
-    .nav-right{
-      display:flex;
-      gap:1rem;
-      align-items:center;
-    }
-
-    .theme-btn,.resume-btn{
-      border:1px solid var(--border);
-      background:transparent;
-      color:var(--muted);
-      padding:.55rem .9rem;
-      border-radius:6px;
-      font-size:.75rem;
-      cursor:pointer;
-      transition:.2s;
-    }
-
-    .theme-btn:hover,.resume-btn:hover{
-      border-color:var(--accent);
-      color:var(--accent);
-    }
-
-    .hire-btn{
-      background:var(--accent);
-      color:#000;
-      padding:.65rem 1.1rem;
-      border-radius:6px;
-      font-size:.75rem;
-      letter-spacing:.05em;
-      font-weight:700;
-    }
-
-    section{
-      padding:6rem 0;
-      border-top:1px solid var(--border);
-    }
-
-    .section-label{
-      color:var(--accent);
-      text-transform:uppercase;
-      letter-spacing:.14em;
-      font-size:.72rem;
-      margin-bottom:.6rem;
-    }
-
-    .section-title{
-      font-family:'DM Serif Display',serif;
-      font-size:clamp(2.2rem,5vw,4rem);
-      line-height:1.1;
-      margin-bottom:3rem;
-    }
-
-    .section-title em{
-      color:var(--accent);
-      font-style:italic;
-    }
-
-    #hero{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      padding-top:90px;
-    }
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.15fr .85fr;
-      gap:3rem;
-      align-items:center;
-    }
-
-    .hero-tag{
-      display:inline-flex;
-      gap:.6rem;
-      align-items:center;
-      color:var(--green);
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      font-size:.72rem;
-      margin-bottom:1.8rem;
-    }
-
-    .hero-tag::before{
-      content:'';
-      width:8px;
-      height:8px;
-      border-radius:50%;
-      background:var(--green);
-    }
-
-    .hero-title{
-      font-family:'DM Serif Display',serif;
-      font-size:clamp(3.7rem,8vw,7rem);
-      line-height:.96;
-      letter-spacing:-.04em;
-    }
-
-    .hero-title em{
-      color:var(--accent);
-      font-style:italic;
-    }
-
-    .hero-sub{
-      margin-top:1.5rem;
-      max-width:650px;
-      color:var(--muted);
-      font-size:1rem;
-    }
-
-    .hero-tags,.stack{
-      display:flex;
-      flex-wrap:wrap;
-      gap:.6rem;
-      margin-top:1.7rem;
-    }
-
-    .tag{
-      border:1px solid var(--border);
-      padding:.4rem .8rem;
-      border-radius:4px;
-      font-size:.72rem;
-      text-transform:uppercase;
-      letter-spacing:.07em;
-      color:var(--muted);
-    }
-
-    .tag.primary{
-      border-color:var(--accent);
-      background:var(--accent-dim);
-      color:var(--accent);
-    }
-
-    .hero-actions{
-      display:flex;
-      gap:1rem;
-      flex-wrap:wrap;
-      margin-top:2.2rem;
-    }
-
-    .btn-primary,.btn-secondary{
-      padding:.9rem 1.5rem;
-      border-radius:6px;
-      font-size:.8rem;
-      letter-spacing:.05em;
-      transition:.2s;
-    }
-
-    .btn-primary{
-      background:var(--accent);
-      color:#000;
-      font-weight:700;
-    }
-
-    .btn-secondary{
-      border:1px solid var(--border);
-      color:var(--text);
-    }
-
-    .btn-secondary:hover{
-      border-color:var(--accent);
-      color:var(--accent);
-    }
-
-    .hero-stats{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:1px;
-      margin-top:3rem;
-      border:1px solid var(--border);
-      overflow:hidden;
-      border-radius:8px;
-      background:var(--border);
-    }
-
-    .stat{
-      background:var(--bg2);
-      padding:1.4rem;
-    }
-
-    .stat h3{
-      color:var(--accent);
-      font-size:2rem;
-      font-family:'Syne',sans-serif;
-    }
-
-    .stat p{
-      color:var(--muted);
-      font-size:.72rem;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-    }
-
-    .hero-panel{
-      background:linear-gradient(180deg,var(--bg2),var(--bg3));
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:1.5rem;
-      position:relative;
-      overflow:hidden;
-      box-shadow:0 20px 60px rgba(0,0,0,.35);
-    }
-
-    .panel-top{
-      display:flex;
-      justify-content:space-between;
-      margin-bottom:1.5rem;
-    }
-
-    .panel-title{
-      font-size:.82rem;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      color:var(--muted);
-    }
-
-    .panel-value{
-      font-size:2.5rem;
-      color:var(--accent);
-      font-family:'Syne',sans-serif;
-      font-weight:800;
-      line-height:1;
-      margin-top:.5rem;
-    }
-
-    .mini-chart{
-      margin-top:2rem;
-      height:180px;
-      display:flex;
-      align-items:flex-end;
-      gap:10px;
-    }
-
-    .bar{
-      flex:1;
-      background:linear-gradient(180deg,var(--accent),#ffd166);
-      border-radius:8px 8px 0 0;
-      opacity:.9;
-    }
-
-    .kpi-row{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:1rem;
-      margin-top:1.5rem;
-    }
-
-    .kpi-card{
-      background:rgba(255,255,255,.02);
-      border:1px solid var(--border);
-      border-radius:10px;
-      padding:1rem;
-    }
-
-    .kpi-label{
-      font-size:.72rem;
-      color:var(--muted);
-      text-transform:uppercase;
-      letter-spacing:.08em;
-    }
-
-    .kpi-value{
-      font-size:1.3rem;
-      margin-top:.5rem;
-      font-weight:700;
-    }
-
-    .featured-project{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:2rem;
-      align-items:center;
-    }
-
-    .featured-visual{
-      background:linear-gradient(180deg,var(--bg2),var(--bg3));
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:1.4rem;
-    }
-
-    .dashboard-header{
-      display:flex;
-      justify-content:space-between;
-      margin-bottom:1.5rem;
-    }
-
-    .dashboard-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:1rem;
-      margin-bottom:1rem;
-    }
-
-    .dashboard-box{
-      background:rgba(255,255,255,.03);
-      border:1px solid var(--border);
-      border-radius:12px;
-      padding:1rem;
-      min-height:110px;
-    }
-
-    .dashboard-box h4{
-      font-size:.72rem;
-      color:var(--muted);
-      margin-bottom:.7rem;
-      text-transform:uppercase;
-    }
-
-    .dashboard-box strong{
-      font-size:1.5rem;
-      color:var(--accent);
-    }
-
-    .trend{
-      height:90px;
-      border-radius:10px;
-      background:linear-gradient(180deg,rgba(245,158,11,.3),transparent);
-      position:relative;
-      overflow:hidden;
-    }
-
-    .trend::after{
-      content:'';
-      position:absolute;
-      left:0;
-      right:0;
-      top:50%;
-      height:2px;
-      background:linear-gradient(90deg,transparent,var(--accent),transparent);
-      transform:skewY(-8deg);
-    }
-
-    .feature-copy p{
-      color:var(--muted);
-      margin-bottom:1rem;
-    }
-
-    .impact-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:1rem;
-      margin-top:2rem;
-    }
-
-    .impact-card{
-      border:1px solid var(--border);
-      border-radius:10px;
-      padding:1rem;
-      background:var(--bg2);
-    }
-
-    .impact-card h4{
-      font-size:1.4rem;
-      color:var(--accent);
-    }
-
-    .impact-card p{
-      color:var(--muted);
-      font-size:.78rem;
-      margin-top:.4rem;
-    }
-
-    .experience-list,.project-grid,.skills-grid,.trust-grid{
-      display:grid;
-      gap:1rem;
-    }
-
-    .experience-item,.project-card,.skill-card,.trust-card,.contact-card{
-      background:var(--bg2);
-      border:1px solid var(--border);
-      border-radius:14px;
-      transition:.25s;
-    }
-
-    .experience-item:hover,.project-card:hover,.skill-card:hover,.trust-card:hover,.contact-card:hover{
-      border-color:var(--accent);
-      transform:translateY(-4px);
-    }
-
-    .experience-item{
-      padding:2rem;
-    }
-
-    .exp-top{
-      display:flex;
-      justify-content:space-between;
-      gap:1rem;
-      margin-bottom:1rem;
-    }
-
-    .exp-role{
-      font-family:'Syne',sans-serif;
-      font-size:1.1rem;
-      font-weight:700;
-    }
-
-    .exp-company{
-      color:var(--accent);
-      font-size:.85rem;
-      margin-top:.2rem;
-    }
-
-    .exp-period{
-      color:var(--muted);
-      font-size:.72rem;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      white-space:nowrap;
-    }
-
-    .exp-points{
-      color:var(--muted);
-      font-size:.84rem;
-      display:grid;
-      gap:.7rem;
-    }
-
-    .project-grid{
-      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    }
-
-    .project-card{
-      overflow:hidden;
-    }
-
-    .project-thumb{
-      height:210px;
-      background:linear-gradient(135deg,var(--bg3),#252b37);
-      border-bottom:1px solid var(--border);
-      padding:1.2rem;
-      position:relative;
-    }
-
-    .mock-screen{
-      width:100%;
-      height:100%;
-      background:#0f1218;
-      border-radius:12px;
-      border:1px solid #2f3542;
-      overflow:hidden;
-      padding:1rem;
-    }
-
-    .mock-row{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:.6rem;
-      margin-bottom:.8rem;
-    }
-
-    .mock-kpi{
-      background:rgba(245,158,11,.08);
-      border:1px solid rgba(245,158,11,.2);
-      border-radius:8px;
-      height:60px;
-    }
-
-    .mock-chart{
-      height:90px;
-      background:linear-gradient(180deg,rgba(245,158,11,.25),transparent);
-      border-radius:10px;
-      margin-bottom:.8rem;
-    }
-
-    .mock-table{
-      height:40px;
-      background:rgba(255,255,255,.03);
-      border-radius:8px;
-    }
-
-    .project-content{
-      padding:1.7rem;
-    }
-
-    .project-title{
-      font-family:'Syne',sans-serif;
-      font-size:1.1rem;
-      margin-bottom:.8rem;
-    }
-
-    .project-content p{
-      color:var(--muted);
-      font-size:.84rem;
-      margin-bottom:1rem;
-    }
-
-    .project-actions{
-      display:flex;
-      gap:.7rem;
-      margin-top:1.4rem;
-      flex-wrap:wrap;
-    }
-
-    .small-btn{
-      padding:.7rem 1rem;
-      border-radius:6px;
-      font-size:.72rem;
-      text-transform:uppercase;
-      letter-spacing:.05em;
-      border:1px solid var(--border);
-    }
-
-    .small-btn.primary{
-      background:var(--accent);
-      border-color:var(--accent);
-      color:#000;
-      font-weight:700;
-    }
-
-    .skills-grid{
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    }
-
-    .skill-card{
-      padding:1.5rem;
-    }
-
-    .skill-card h3{
-      color:var(--accent);
-      font-size:.82rem;
-      text-transform:uppercase;
-      letter-spacing:.1em;
-      margin-bottom:1rem;
-    }
-
-    .skill-list{
-      display:flex;
-      flex-wrap:wrap;
-      gap:.5rem;
-    }
-
-    .skill-pill{
-      padding:.35rem .75rem;
-      border-radius:4px;
-      border:1px solid var(--border);
-      font-size:.76rem;
-      color:var(--muted);
-    }
-
-    .trust-grid{
-      grid-template-columns:repeat(4,1fr);
-    }
-
-    .trust-card{
-      padding:1.5rem;
-      text-align:center;
-    }
-
-    .trust-card h4{
-      margin-top:.8rem;
-      font-size:.9rem;
-    }
-
-    .trust-card p{
-      color:var(--muted);
-      font-size:.78rem;
-      margin-top:.4rem;
-    }
-
-    .contact-layout{
-      display:grid;
-      grid-template-columns:.8fr 1.2fr;
-      gap:2rem;
-    }
-
-    .contact-card{
-      padding:1.5rem;
-      margin-bottom:1rem;
-    }
-
-    .contact-card small{
-      color:var(--muted);
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      font-size:.68rem;
-    }
-
-    .contact-card h4{
-      margin-top:.5rem;
-      font-size:1rem;
-    }
-
-    form{
-      background:var(--bg2);
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:2rem;
-    }
-
-    .form-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:1rem;
-    }
-
-    input,textarea{
-      width:100%;
-      background:var(--bg3);
-      border:1px solid var(--border);
-      color:var(--text);
-      border-radius:8px;
-      padding:.9rem 1rem;
-      font-family:'DM Mono',monospace;
-      outline:none;
-      margin-bottom:1rem;
-    }
-
-    input:focus,textarea:focus{
-      border-color:var(--accent);
-    }
-
-    textarea{
-      min-height:140px;
-      resize:vertical;
-    }
-
-    .submit-btn{
-      width:100%;
-      background:var(--accent);
-      color:#000;
-      border:none;
-      padding:1rem;
-      border-radius:8px;
-      font-weight:700;
-      cursor:pointer;
-      font-family:'DM Mono',monospace;
-    }
-
-    footer{
-      border-top:1px solid var(--border);
-      padding:2rem;
-      text-align:center;
-      color:var(--muted);
-      font-size:.78rem;
-    }
-
-    .fade{
-      opacity:0;
-      transform:translateY(20px);
-      transition:all .7s ease;
-    }
-
-    .fade.show{
-      opacity:1;
-      transform:none;
-    }
-
-    @media(max-width:980px){
-      .hero-grid,.featured-project,.contact-layout{
-        grid-template-columns:1fr;
-      }
-
-      .trust-grid{
-        grid-template-columns:repeat(2,1fr);
-      }
-    }
-
-    @media(max-width:768px){
-      nav{
-        padding:0 1rem;
-      }
-
-      .nav-links,.resume-btn{
-        display:none;
-      }
-
-      #hero{
-        padding-top:120px;
-      }
-
-      .hero-title{
-        font-size:3.8rem;
-      }
-
-      .hero-stats,.impact-grid,.trust-grid,.form-grid{
-        grid-template-columns:1fr;
-      }
-
-      section{
-        padding:4.5rem 0;
-      }
-
-      .project-thumb{
-        height:180px;
-      }
+      --bg:        #f5f4ef;
+      --bg2:       #eceae2;
+      --bg3:       #e2dfd6;
+      --border:    #d4d0c8;
+      --text:      #1a1a1a;
+      --muted:     #6b6b6b;
+      --accent:    #d97706;
+      --accent2:   #b45309;
+      --accent-dim:#fef3c7;
+      --green:     #059669;
+      --card-bg:   #eceae2;
+      --nav-bg:    rgba(245,244,239,0.92);
+    }
+
+    /* ─── Reset ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'DM Mono', monospace;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      transition: background 0.3s, color 0.3s;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ─── Noise Overlay ──────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.4;
+    }
+
+    /* ─── Grid Dots Background ───────────────────────── */
+    .grid-bg {
+      position: fixed; inset: 0; z-index: 0;
+      background-image:
+        radial-gradient(circle at 1px 1px, var(--border) 1px, transparent 0);
+      background-size: 40px 40px;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    /* ─── Nav ────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px) saturate(1.4);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 60px;
+      transition: background 0.3s;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 1.15rem;
+      color: var(--accent); letter-spacing: -0.02em;
+    }
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+      font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .nav-links a { color: var(--muted); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .theme-btn {
+      background: none; border: 1px solid var(--border);
+      color: var(--muted); cursor: pointer; padding: 0.35rem 0.7rem;
+      border-radius: 4px; font-size: 0.85rem; transition: all 0.2s;
+    }
+    .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .hire-btn {
+      background: var(--accent); color: #000;
+      font-family: 'DM Mono', monospace; font-size: 0.78rem;
+      font-weight: 500; letter-spacing: 0.06em;
+      padding: 0.45rem 1.1rem; border-radius: 4px;
+      border: none; cursor: pointer; transition: opacity 0.2s;
+    }
+    .hire-btn:hover { opacity: 0.85; }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: 0.3s; }
+
+    /* ─── Mobile Nav ─────────────────────────────────── */
+    .mobile-nav {
+      display: none; position: fixed; top: 60px; left: 0; right: 0;
+      background: var(--nav-bg); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      flex-direction: column; padding: 1.5rem 2rem; gap: 1.2rem;
+      list-style: none; font-size: 0.9rem;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      z-index: 99;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { color: var(--muted); transition: color 0.2s; }
+    .mobile-nav a:hover { color: var(--accent); }
+
+    /* ─── Wrapper ────────────────────────────────────── */
+    .wrapper {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 3rem);
+    }
+
+    /* ─── Hero ───────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding-top: 80px; padding-bottom: 4rem;
+      position: relative;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-tag::before {
+      content: ''; display: block;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
+    }
+    h1.hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3.5rem, 9vw, 7.5rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.3rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    h1.hero-name em {
+      font-style: italic; color: var(--accent);
+    }
+    .hero-role {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      color: var(--muted); margin-top: 1.2rem;
+      max-width: 580px; line-height: 1.6;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-top: 1.8rem;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .tag {
+      font-size: 0.73rem; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.35rem 0.85rem; border-radius: 3px;
+      border: 1px solid var(--border);
+      color: var(--muted); transition: all 0.2s;
+    }
+    .tag:hover { border-color: var(--accent); color: var(--accent); }
+    .tag.accent { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+    .hero-ctas {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      margin-top: 2.5rem;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+    .btn-primary {
+      background: var(--accent); color: #000;
+      font-family: 'DM Mono', monospace; font-size: 0.82rem;
+      font-weight: 500; padding: 0.75rem 1.8rem;
+      border-radius: 4px; border: none; cursor: pointer;
+      transition: opacity 0.2s; letter-spacing: 0.04em;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      font-family: 'DM Mono', monospace; font-size: 0.82rem;
+      padding: 0.75rem 1.8rem; border-radius: 4px;
+      border: 1px solid var(--border); cursor: pointer;
+      transition: all 0.2s; letter-spacing: 0.04em;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-meta {
+      margin-top: 3.5rem; font-size: 0.78rem;
+      color: var(--muted); display: flex; align-items: center; gap: 0.5rem;
+      animation: fadeUp 0.6s 0.5s ease both;
+    }
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 6px;
+      margin-top: 4rem; overflow: hidden;
+      animation: fadeUp 0.6s 0.55s ease both;
+    }
+    .stat {
+      background: var(--bg2); padding: 1.4rem 1.6rem;
+      display: flex; flex-direction: column; gap: 0.25rem;
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: 1.9rem; color: var(--accent); line-height: 1;
+    }
+    .stat-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+    .scroll-hint {
+      position: absolute; bottom: 2rem; left: 0;
+      font-size: 0.72rem; color: var(--muted);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.6rem;
+      animation: fadeUp 0.6s 0.7s ease both;
+    }
+    .scroll-hint::after {
+      content: ''; display: block;
+      width: 1px; height: 30px; background: var(--border);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── Section Shared ─────────────────────────────── */
+    section { padding: clamp(4rem, 8vw, 7rem) 0; border-top: 1px solid var(--border); }
+    .section-label {
+      font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.1; letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+    }
+    .section-title em { font-style: italic; color: var(--accent); }
+
+    /* ─── About ──────────────────────────────────────── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .about-text p { color: var(--muted); font-size: 0.9rem; line-height: 1.85; margin-bottom: 1rem; }
+    .about-text p strong { color: var(--text); }
+    .about-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .about-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 1.4rem 1.6rem;
+      transition: border-color 0.2s;
+    }
+    .about-card:hover { border-color: var(--accent); }
+    .about-card-icon { font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .about-card h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.3rem; }
+    .about-card p { font-size: 0.78rem; color: var(--muted); }
+
+    /* ─── Experience ─────────────────────────────────── */
+    .exp-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+    .exp-item {
+      background: var(--bg2); padding: 2rem 2.2rem;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 1rem; transition: background 0.2s;
+      cursor: default;
+    }
+    .exp-item:hover { background: var(--bg3); }
+    .exp-role { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.2rem; }
+    .exp-company { color: var(--accent); font-size: 0.82rem; font-weight: 500; margin-bottom: 0.8rem; }
+    .exp-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.8; }
+    .exp-desc li { margin-left: 1.2rem; margin-bottom: 0.35rem; }
+    .exp-meta { text-align: right; }
+    .exp-period { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; white-space: nowrap; }
+    .exp-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+    .exp-tag {
+      font-size: 0.68rem; letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 0.2rem 0.6rem; border-radius: 2px;
+      background: var(--accent-dim); color: var(--accent);
+    }
+
+    /* ─── Skills ─────────────────────────────────────── */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .skill-group {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 1.6rem;
+      transition: border-color 0.2s;
+    }
+    .skill-group:hover { border-color: var(--accent); }
+    .skill-group-title {
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .skill-group-title::before {
+      content: ''; display: block;
+      width: 16px; height: 1px; background: var(--accent);
+    }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-pill {
+      font-size: 0.78rem; color: var(--text);
+      padding: 0.3rem 0.75rem; border-radius: 3px;
+      border: 1px solid var(--border); transition: all 0.2s;
+    }
+    .skill-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ─── Projects ───────────────────────────────────── */
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+    .project-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 2rem;
+      display: flex; flex-direction: column; gap: 1rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .project-num {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: 2.5rem; color: var(--border); line-height: 1;
+      transition: color 0.2s;
+    }
+    .project-card:hover .project-num { color: var(--accent-dim); }
+    .project-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; }
+    .project-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.75; flex: 1; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .project-tag {
+      font-size: 0.67rem; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.2rem 0.6rem; border-radius: 2px;
+      border: 1px solid var(--border); color: var(--muted);
+    }
+    .project-link {
+      font-size: 0.75rem; color: var(--accent);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.4rem;
+      margin-top: 0.5rem; transition: gap 0.2s;
+    }
+    .project-card:hover .project-link { gap: 0.7rem; }
+
+    /* ─── Education & Certs ──────────────────────────── */
+    .edu-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .edu-list, .cert-list { display: flex; flex-direction: column; gap: 1rem; }
+    .edu-item, .cert-item {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 1.6rem;
+      transition: border-color 0.2s;
+    }
+    .edu-item:hover, .cert-item:hover { border-color: var(--accent); }
+    .edu-school { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.3rem; }
+    .edu-degree { font-size: 0.82rem; color: var(--accent); margin-bottom: 0.3rem; }
+    .edu-period { font-size: 0.72rem; color: var(--muted); }
+    .cert-name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.88rem; margin-bottom: 0.2rem; }
+    .cert-issuer { font-size: 0.78rem; color: var(--muted); }
+
+    /* ─── Contact ────────────────────────────────────── */
+    #contact .section-title { margin-bottom: 1rem; }
+    .contact-sub { font-size: 0.88rem; color: var(--muted); margin-bottom: 3rem; max-width: 500px; line-height: 1.8; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 1.3rem 1.6rem;
+      display: flex; align-items: center; gap: 1rem;
+      transition: border-color 0.2s; font-size: 0.85rem;
+    }
+    .contact-link:hover { border-color: var(--accent); }
+    .contact-link-icon { font-size: 1.2rem; }
+    .contact-link-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+    .contact-link-val { font-size: 0.85rem; color: var(--text); }
+    .contact-form { display: flex; flex-direction: column; gap: 0.8rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    .form-input, .form-textarea {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 4px; color: var(--text);
+      font-family: 'DM Mono', monospace; font-size: 0.82rem;
+      padding: 0.75rem 1rem; outline: none;
+      transition: border-color 0.2s; resize: none;
+      width: 100%;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--muted); }
+    .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
+    .form-textarea { height: 130px; }
+    .form-submit {
+      background: var(--accent); color: #000;
+      font-family: 'DM Mono', monospace; font-size: 0.82rem;
+      font-weight: 500; padding: 0.85rem 2rem;
+      border-radius: 4px; border: none; cursor: pointer;
+      letter-spacing: 0.04em; align-self: flex-start;
+      transition: opacity 0.2s;
+    }
+    .form-submit:hover { opacity: 0.85; }
+    .form-success {
+      display: none; font-size: 0.82rem; color: var(--green);
+      padding: 0.75rem 1rem; border: 1px solid var(--green);
+      border-radius: 4px;
+    }
+
+    /* ─── Footer ─────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem clamp(1.5rem, 5vw, 3rem);
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.75rem; color: var(--muted); position: relative; z-index: 1;
+    }
+    .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; color: var(--accent); font-size: 0.95rem; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: var(--muted); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ─── Responsive ─────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links, .hire-btn { display: none; }
+      .hamburger { display: flex; }
+      .about-grid, .edu-grid, .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 1fr; }
+      .exp-meta { text-align: left; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
     }
   </style>
 </head>
 <body>
+  <div class="grid-bg"></div>
 
-<nav>
-  <div class="logo">MY.</div>
-
-  <ul class="nav-links">
-    <li><a href="#featured">Featured</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#contact">Contact</a></li>
+  <!-- ─── NAV ─────────────────────────────────────── -->
+  <nav>
+    <div class="nav-logo">MY.</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀ ◐</button>
+      <a href="#contact" class="hire-btn">Hire Me</a>
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <ul class="mobile-nav" id="mobileNav">
+    <li><a href="#about" onclick="toggleMenu()">About</a></li>
+    <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+    <li><a href="#skills" onclick="toggleMenu()">Skills</a></li>
+    <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+    <li><a href="#education" onclick="toggleMenu()">Education</a></li>
+    <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
   </ul>
 
-  <div class="nav-right">
-    <button class="theme-btn" onclick="toggleTheme()">☀ ◐</button>
-    <a class="resume-btn" href="#">Resume</a>
-    <a class="hire-btn" href="#contact">Hire Me</a>
-  </div>
-</nav>
-
-<section id="hero">
-  <div class="wrapper hero-grid">
-
-    <div class="fade">
+  <!-- ─── HERO ─────────────────────────────────────── -->
+  <section id="hero">
+    <div class="wrapper">
       <div class="hero-tag">Available for opportunities</div>
-
-      <h1 class="hero-title">
-        Md <em>Yusuf</em>
-      </h1>
-
-      <p class="hero-sub">
-        Commercial Data Analyst specialising in merchandising analytics, revenue intelligence, pricing optimisation, and executive decision systems — built on 7+ years of operational P&L ownership.
+      <h1 class="hero-name">Md <em>Yusuf</em></h1>
+      <p class="hero-role">
+        Data Analyst turning transactional data into commercial decisions that move revenue, margin, and cost — built on 7+ years of P&amp;L ownership.
       </p>
-
       <div class="hero-tags">
-        <span class="tag primary">Revenue Intelligence</span>
-        <span class="tag primary">Merchandising Analytics</span>
-        <span class="tag">Power BI</span>
+        <span class="tag accent">Revenue Analytics</span>
+        <span class="tag accent">Margin Optimisation</span>
+        <span class="tag">Category Analytics</span>
         <span class="tag">SQL</span>
+        <span class="tag">Power BI</span>
         <span class="tag">Python</span>
         <span class="tag">DAX</span>
       </div>
-
-      <div class="hero-actions">
-        <a href="#featured" class="btn-primary">Explore Featured Project</a>
-        <a href="#projects" class="btn-secondary">View Case Studies</a>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn-primary">View Work →</a>
+        <a href="#contact" class="btn-outline">Contact Me</a>
+        <a href="https://www.linkedin.com/in/mdyusufanalytics" target="_blank" class="btn-outline">↓ LinkedIn</a>
       </div>
-
+      <p class="hero-meta">📍 Kolkata, West Bengal, India · mdyusuf911@gmail.com</p>
       <div class="hero-stats">
         <div class="stat">
-          <h3>400K+</h3>
-          <p>Rows Analysed</p>
+          <span class="stat-num">400K+</span>
+          <span class="stat-label">Rows Analysed</span>
         </div>
-
         <div class="stat">
-          <h3>12%</h3>
-          <p>Vendor Cost Reduction</p>
+          <span class="stat-num">12%</span>
+          <span class="stat-label">Vendor Cost Reduction</span>
         </div>
-
         <div class="stat">
-          <h3>50+</h3>
-          <p>Events Managed</p>
+          <span class="stat-num">7+</span>
+          <span class="stat-label">Years Ops Experience</span>
+        </div>
+      </div>
+      <div class="scroll-hint">scroll</div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─────────────────────────────────────── -->
+  <section id="about">
+    <div class="wrapper">
+      <p class="section-label">/ about me</p>
+      <h2 class="section-title">Turning data into<br><em>commercial decisions</em></h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>I'm <strong>Md Yusuf</strong>, a Data Analyst based in Kolkata, India. My approach is <strong>business-first</strong> — every analysis starts with one question: <em>what decision will this change?</em></p>
+          <p>I focus on commercial levers — <strong>pricing, mix, vendor performance, category contribution</strong> — not just reporting metrics. I bring a differentiated lens from 7+ years of P&amp;L ownership in operations, where I managed budgets, negotiated vendor costs, and owned revenue outcomes. Now applied to analytics.</p>
+          <p>I answer questions like: <em>Which SKUs drive revenue but dilute margin? Where are we under-indexed in category contribution? What mix or pricing changes improve profitability?</em></p>
+          <p>Currently targeting roles in <strong>BFSI, Retail &amp; Manufacturing</strong> where data drives category-level decisions — not just reporting outputs.</p>
+        </div>
+        <div class="about-cards">
+          <div class="about-card">
+            <div class="about-card-icon">📊</div>
+            <h4>Merchandising & Category Analytics</h4>
+            <p>SKU-level margin analysis, demand pattern identification, and category contribution modelling.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">💹</div>
+            <h4>Revenue & Margin Optimisation</h4>
+            <p>Identified 5–12% margin improvement potential at SKU/category level through structured analysis.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">🔍</div>
+            <h4>KPI Design & Executive Reporting</h4>
+            <p>Built dashboards (Revenue, Margin %, Units, ASP) used for weekly commercial decisions.</p>
+          </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="hero-panel fade">
-      <div class="panel-top">
-        <div>
-          <div class="panel-title">Commercial KPI Dashboard</div>
-          <div class="panel-value">₹12.4M</div>
-        </div>
+  <!-- ─── EXPERIENCE ────────────────────────────────── -->
+  <section id="experience">
+    <div class="wrapper">
+      <p class="section-label">/ experience</p>
+      <h2 class="section-title">Where I've <em>worked</em></h2>
+      <div class="exp-list">
 
-        <div class="tag primary">LIVE INSIGHTS</div>
-      </div>
-
-      <div class="mini-chart">
-        <div class="bar" style="height:30%"></div>
-        <div class="bar" style="height:45%"></div>
-        <div class="bar" style="height:52%"></div>
-        <div class="bar" style="height:48%"></div>
-        <div class="bar" style="height:70%"></div>
-        <div class="bar" style="height:66%"></div>
-        <div class="bar" style="height:88%"></div>
-      </div>
-
-      <div class="kpi-row">
-        <div class="kpi-card">
-          <div class="kpi-label">Margin Lift</div>
-          <div class="kpi-value">+8.4%</div>
-        </div>
-
-        <div class="kpi-card">
-          <div class="kpi-label">Fraud Risk</div>
-          <div class="kpi-value">-40%</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section id="featured">
-  <div class="wrapper">
-
-    <p class="section-label fade">/ featured case study</p>
-
-    <h2 class="section-title fade">
-      Lowe's Merchandising <em>Intelligence System</em>
-    </h2>
-
-    <div class="featured-project fade">
-
-      <div class="featured-visual">
-        <div class="dashboard-header">
-          <div>
-            <div class="panel-title">Retail Command Center</div>
-            <div class="panel-value">+11.2%</div>
-          </div>
-
-          <div class="tag primary">MERCHANDISING</div>
-        </div>
-
-        <div class="dashboard-grid">
-          <div class="dashboard-box">
-            <h4>Revenue</h4>
-            <strong>$4.2M</strong>
-          </div>
-
-          <div class="dashboard-box">
-            <h4>Margin %</h4>
-            <strong>32.8%</strong>
-          </div>
-
-          <div class="dashboard-box">
-            <h4>Top SKU</h4>
-            <strong>XT-224</strong>
-          </div>
-
-          <div class="dashboard-box">
-            <h4>Promo Lift</h4>
-            <strong>+14%</strong>
-          </div>
-        </div>
-
-        <div class="trend"></div>
-      </div>
-
-      <div class="feature-copy">
-        <p>
-          Built a production-style merchandising intelligence system designed around real merchant workflows — revenue tracking, category contribution, promo lift analysis, vendor scorecards, and margin optimisation.
-        </p>
-
-        <p>
-          The solution combines SQL Server, Power BI, DAX, and star-schema modelling to surface executive-ready insights from transactional retail datasets.
-        </p>
-
-        <p>
-          Instead of focusing only on reporting, the dashboard answers commercial questions:
-        </p>
-
-        <div class="stack">
-          <span class="tag primary">Which SKUs dilute margin?</span>
-          <span class="tag">Where is promo cannibalisation happening?</span>
-          <span class="tag">Which vendors underperform?</span>
-        </div>
-
-        <div class="impact-grid">
-          <div class="impact-card">
-            <h4>50K+</h4>
-            <p>Transactional rows modelled</p>
-          </div>
-
-          <div class="impact-card">
-            <h4>5–12%</h4>
-            <p>Margin improvement opportunities identified</p>
-          </div>
-
-          <div class="impact-card">
-            <h4>7</h4>
-            <p>Executive reporting modules built</p>
-          </div>
-        </div>
-
-        <div class="hero-actions" style="margin-top:2rem;">
-          <a href="https://github.com/Yusufmd24" target="_blank" class="btn-primary">Explore Case Study</a>
-          <a href="https://github.com/Yusufmd24" target="_blank" class="btn-secondary">Open GitHub</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section id="experience">
-  <div class="wrapper">
-
-    <p class="section-label fade">/ experience</p>
-
-    <h2 class="section-title fade">
-      Commercial operations meets <em>analytics</em>
-    </h2>
-
-    <div class="experience-list fade">
-
-      <div class="experience-item">
-        <div class="exp-top">
+        <div class="exp-item">
           <div>
             <div class="exp-role">Freelance Data Analyst</div>
             <div class="exp-company">Self-Employed</div>
+            <ul class="exp-desc">
+              <li>Built a 5-page interactive Power BI dashboard for credit card fraud detection — drill-through analysis across 10,000+ transactions, reducing manual review effort by ~40%.</li>
+              <li>Developed Python-based EDA pipelines using Pandas identifying data quality issues across 3+ datasets, improving downstream reporting accuracy.</li>
+              <li>Designed SQL queries and KPI dashboards translating raw transactional data into actionable business insights.</li>
+              <li>Applied DAX and Power Query for data modelling across multiple data sources for MIS reporting.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="exp-tag">Power BI</span>
+              <span class="exp-tag">Python</span>
+              <span class="exp-tag">SQL</span>
+              <span class="exp-tag">DAX</span>
+              <span class="exp-tag">Pandas</span>
+            </div>
           </div>
-
-          <div class="exp-period">2026 — Present</div>
+          <div class="exp-meta">
+            <div class="exp-period">Jan 2026 – Present</div>
+          </div>
         </div>
 
-        <div class="exp-points">
-          <div>• Built interactive Power BI fraud analytics dashboards across 10,000+ transactions reducing manual review effort by ~40%.</div>
-          <div>• Developed Python EDA pipelines identifying reporting-quality gaps across multi-source datasets.</div>
-          <div>• Created KPI systems translating transactional data into executive-ready commercial insights.</div>
-        </div>
-      </div>
-
-      <div class="experience-item">
-        <div class="exp-top">
+        <div class="exp-item">
           <div>
             <div class="exp-role">Event Operations Manager</div>
             <div class="exp-company">FireFox Events</div>
+            <ul class="exp-desc">
+              <li>Owned end-to-end P&amp;L management across a portfolio of 50+ large-scale events with full accountability for revenue forecasting, cost optimisation, and client profitability analysis.</li>
+              <li>Designed financial tracking models in Excel + Power BI to monitor budget variance, spend allocation, and margin by client — enabling data-backed negotiations that reduced vendor costs by <strong>12%</strong>.</li>
+              <li>Built operational dashboards tracking lead-to-deal conversion, event ROI, and client retention metrics — giving leadership real-time pipeline visibility.</li>
+              <li>Standardised post-event executive reporting cadence, replacing ad-hoc analysis with structured business reviews.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="exp-tag">Power BI</span>
+              <span class="exp-tag">Excel</span>
+              <span class="exp-tag">P&L Management</span>
+              <span class="exp-tag">KPI Design</span>
+              <span class="exp-tag">Vendor Analytics</span>
+            </div>
           </div>
-
-          <div class="exp-period">2020 — 2025</div>
+          <div class="exp-meta">
+            <div class="exp-period">May 2020 – Jun 2025</div>
+          </div>
         </div>
 
-        <div class="exp-points">
-          <div>• Managed end-to-end P&L accountability across 50+ large-scale events.</div>
-          <div>• Reduced vendor costs by 12% through structured spend analysis and negotiation frameworks.</div>
-          <div>• Standardised executive reporting replacing fragmented operational reviews.</div>
-        </div>
-      </div>
-
-      <div class="experience-item">
-        <div class="exp-top">
+        <div class="exp-item">
           <div>
             <div class="exp-role">Production Supervisor</div>
             <div class="exp-company">Shrey Components</div>
+            <ul class="exp-desc">
+              <li>Built Excel-based operational dashboards to track output trends, defect ratios, and machine downtime — converting raw production data into shift-level decisions.</li>
+              <li>Implemented standardised data reporting routines that improved on-time completion rates by <strong>8%</strong>.</li>
+              <li>Applied Lean/Kaizen methodology, using data analysis to prioritise improvement initiatives by cost impact and feasibility.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="exp-tag">Excel</span>
+              <span class="exp-tag">Operational Analytics</span>
+              <span class="exp-tag">KPI Tracking</span>
+              <span class="exp-tag">Lean / Kaizen</span>
+            </div>
           </div>
-
-          <div class="exp-period">2016 — 2018</div>
+          <div class="exp-meta">
+            <div class="exp-period">Jul 2016 – Sep 2018</div>
+          </div>
         </div>
 
-        <div class="exp-points">
-          <div>• Built production KPI dashboards tracking output, downtime, and defect trends.</div>
-          <div>• Improved operational completion rates by 8% through process analytics.</div>
-          <div>• Applied Lean and Kaizen frameworks to prioritise improvement initiatives.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SKILLS ────────────────────────────────────── -->
+  <section id="skills">
+    <div class="wrapper">
+      <p class="section-label">/ skills</p>
+      <h2 class="section-title">My analytics <em>toolkit</em></h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <div class="skill-group-title">Data & Querying</div>
+          <div class="skill-pills">
+            <span class="skill-pill">SQL</span>
+            <span class="skill-pill">MS SQL Server</span>
+            <span class="skill-pill">CTEs</span>
+            <span class="skill-pill">Window Functions</span>
+            <span class="skill-pill">Star Schema</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Visualisation & BI</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Power BI</span>
+            <span class="skill-pill">DAX</span>
+            <span class="skill-pill">Power Query</span>
+            <span class="skill-pill">KPI Dashboards</span>
+            <span class="skill-pill">Drill-Through</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Python & Analytics</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">Pandas</span>
+            <span class="skill-pill">Matplotlib</span>
+            <span class="skill-pill">NumPy</span>
+            <span class="skill-pill">EDA</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Spreadsheets & Modelling</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Excel</span>
+            <span class="skill-pill">Financial Modelling</span>
+            <span class="skill-pill">Pivot Tables</span>
+            <span class="skill-pill">VLOOKUP / INDEX</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Commercial Expertise</div>
+          <div class="skill-pills">
+            <span class="skill-pill">P&L Management</span>
+            <span class="skill-pill">Revenue Analytics</span>
+            <span class="skill-pill">Margin Optimisation</span>
+            <span class="skill-pill">Category Analytics</span>
+            <span class="skill-pill">Vendor Analysis</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Industry Context</div>
+          <div class="skill-pills">
+            <span class="skill-pill">BFSI</span>
+            <span class="skill-pill">Retail / FMCG</span>
+            <span class="skill-pill">Manufacturing</span>
+            <span class="skill-pill">Automotive</span>
+            <span class="skill-pill">Events</span>
+          </div>
         </div>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="projects">
-  <div class="wrapper">
+  <!-- ─── PROJECTS ──────────────────────────────────── -->
+  <section id="projects">
+    <div class="wrapper">
+      <p class="section-label">/ portfolio projects</p>
+      <h2 class="section-title">Analytics <em>I've built</em></h2>
+      <div class="projects-grid">
 
-    <p class="section-label fade">/ portfolio projects</p>
-
-    <h2 class="section-title fade">
-      Business-focused analytics <em>case studies</em>
-    </h2>
-
-    <div class="project-grid fade">
-
-      <div class="project-card">
-
-        <div class="project-thumb">
-          <div class="mock-screen">
-            <div class="mock-row">
-              <div class="mock-kpi"></div>
-              <div class="mock-kpi"></div>
-              <div class="mock-kpi"></div>
-            </div>
-            <div class="mock-chart"></div>
-            <div class="mock-table"></div>
-          </div>
-        </div>
-
-        <div class="project-content">
+        <div class="project-card">
+          <div class="project-num">01</div>
           <div class="project-title">Credit Card Fraud Detection</div>
-
-          <p>
-            Built a 5-page Power BI fraud intelligence dashboard with drill-through investigation workflows, anomaly detection visuals, and transaction-level analysis.
-          </p>
-
-          <div class="stack">
-            <span class="tag primary">Power BI</span>
-            <span class="tag">DAX</span>
-            <span class="tag">Fraud Analytics</span>
+          <p class="project-desc">5-page interactive Power BI report enabling drill-through fraud analysis across 10,000+ transactions. Covers executive overview, fraud pattern analysis, transaction deep dive, and customer-level drill-through. Reduces manual review effort by an estimated 40%.</p>
+          <div class="project-tags">
+            <span class="project-tag">Power BI</span>
+            <span class="project-tag">DAX</span>
+            <span class="project-tag">BFSI</span>
+            <span class="project-tag">Fraud Analytics</span>
           </div>
-
-          <div class="project-actions">
-            <a class="small-btn primary" href="https://github.com/Yusufmd24" target="_blank">View Dashboard</a>
-            <a class="small-btn" href="https://github.com/Yusufmd24" target="_blank">Open GitHub</a>
-          </div>
+          <a href="https://github.com/mdyusufanalytics" target="_blank" class="project-link">View on GitHub →</a>
         </div>
+
+        <div class="project-card">
+          <div class="project-num">02</div>
+          <div class="project-title">E-Commerce Data Intelligence Pipeline</div>
+          <p class="project-desc">End-to-end analytics pipeline (Python → Excel → SQL Server → Power BI) on 400K+ rows of retail data. Uncovers demand patterns, identifies margin leakage at SKU/category level (5–12% improvement potential), and delivers weekly decision-ready KPI dashboards.</p>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">SQL Server</span>
+            <span class="project-tag">Power BI</span>
+            <span class="project-tag">Retail</span>
+          </div>
+          <a href="https://github.com/mdyusufanalytics" target="_blank" class="project-link">View on GitHub →</a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">03</div>
+          <div class="project-title">Lowe's Retail Merchandising Analytics</div>
+          <p class="project-desc">Production-quality SQL + Power BI merchandising intelligence built on ~50,000 rows. Includes weekly sales/margin summary, vendor scorecard, promotional lift analysis, top/bottom SKU reports, omni-channel split, and a cost-change simulation model aligned to merchant decision workflows.</p>
+          <div class="project-tags">
+            <span class="project-tag">SQL</span>
+            <span class="project-tag">Power BI</span>
+            <span class="project-tag">Star Schema</span>
+            <span class="project-tag">Merchandising</span>
+          </div>
+          <a href="https://github.com/mdyusufanalytics" target="_blank" class="project-link">View on GitHub →</a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">04</div>
+          <div class="project-title">Quantium Customer Analytics (Task 1)</div>
+          <p class="project-desc">Complete customer analytics pipeline in Python replicating a real-world Quantium virtual internship task. Covers data cleaning, feature engineering, customer segmentation by lifestage and premium tier, statistical significance testing, and a professionally formatted PDF analytics report compiled via ReportLab.</p>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">Pandas</span>
+            <span class="project-tag">Segmentation</span>
+            <span class="project-tag">ReportLab</span>
+          </div>
+          <a href="https://github.com/mdyusufanalytics" target="_blank" class="project-link">View on GitHub →</a>
+        </div>
+
       </div>
+    </div>
+  </section>
 
-      <div class="project-card">
-
-        <div class="project-thumb">
-          <div class="mock-screen">
-            <div class="mock-row">
-              <div class="mock-kpi"></div>
-              <div class="mock-kpi"></div>
-              <div class="mock-kpi"></div>
+  <!-- ─── EDUCATION ─────────────────────────────────── -->
+  <section id="education">
+    <div class="wrapper">
+      <p class="section-label">/ education & credentials</p>
+      <h2 class="section-title">Academic <em>foundations</em></h2>
+      <div class="edu-grid">
+        <div>
+          <p style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">Education</p>
+          <div class="edu-list">
+            <div class="edu-item">
+              <div class="edu-school">Aptech Learning</div>
+              <div class="edu-degree">Advanced Program: Smart Data Analytics with Power BI</div>
+              <div class="edu-period">Jul 2025 – Mar 2026 · Distinction</div>
             </div>
-            <div class="mock-chart"></div>
-            <div class="mock-table"></div>
-          </div>
-        </div>
-
-        <div class="project-content">
-          <div class="project-title">E-Commerce Intelligence Pipeline</div>
-
-          <p>
-            End-to-end analytics pipeline across Python, SQL Server, Excel, and Power BI analysing 400K+ retail records for category contribution and margin leakage.
-          </p>
-
-          <div class="stack">
-            <span class="tag primary">Python</span>
-            <span class="tag">SQL Server</span>
-            <span class="tag">Retail Analytics</span>
-          </div>
-
-          <div class="project-actions">
-            <a class="small-btn primary" href="https://github.com/Yusufmd24" target="_blank">Explore Case Study</a>
-            <a class="small-btn" href="https://github.com/Yusufmd24" target="_blank">Open GitHub</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card">
-
-        <div class="project-thumb">
-          <div class="mock-screen">
-            <div class="mock-row">
-              <div class="mock-kpi"></div>
-              <div class="mock-kpi"></div>
-              <div class="mock-kpi"></div>
+            <div class="edu-item">
+              <div class="edu-school">West Bengal University of Technology</div>
+              <div class="edu-degree">B.Tech — Automotive Engineering Technology</div>
+              <div class="edu-period">2012 – 2016 · Kolkata</div>
             </div>
-            <div class="mock-chart"></div>
-            <div class="mock-table"></div>
           </div>
         </div>
-
-        <div class="project-content">
-          <div class="project-title">Quantium Customer Analytics</div>
-
-          <p>
-            Customer segmentation and statistical analysis pipeline built in Python replicating real-world commercial analytics workflows.
-          </p>
-
-          <div class="stack">
-            <span class="tag primary">Pandas</span>
-            <span class="tag">Segmentation</span>
-            <span class="tag">EDA</span>
+        <div>
+          <p style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">Certifications</p>
+          <div class="cert-list">
+            <div class="cert-item">
+              <div class="cert-name">Data Science Essentials with Python</div>
+              <div class="cert-issuer">IBM</div>
+            </div>
+            <div class="cert-item">
+              <div class="cert-name">Enterprise Data Science in Practice</div>
+              <div class="cert-issuer">IBM</div>
+            </div>
+            <div class="cert-item">
+              <div class="cert-name">Data Science Methodologies</div>
+              <div class="cert-issuer">IBM</div>
+            </div>
+            <div class="cert-item">
+              <div class="cert-name">Agile Explorer</div>
+              <div class="cert-issuer">IBM</div>
+            </div>
+            <div class="cert-item">
+              <div class="cert-name">Networking Essentials</div>
+              <div class="cert-issuer">Cisco</div>
+            </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-          <div class="project-actions">
-            <a class="small-btn primary" href="https://github.com/Yusufmd24" target="_blank">View Analysis</a>
-            <a class="small-btn" href="https://github.com/Yusufmd24" target="_blank">Open GitHub</a>
+  <!-- ─── CONTACT ──────────────────────────────────── -->
+  <section id="contact">
+    <div class="wrapper">
+      <p class="section-label">/ contact</p>
+      <h2 class="section-title">Let's build <em>something</em> great.</h2>
+      <p class="contact-sub">Open to Data Analyst roles across BFSI, Retail, FMCG, and Manufacturing. Available for freelance projects, full-time positions, and collaborations. Feel free to reach out.</p>
+      <div class="contact-grid">
+        <div class="contact-links">
+          <a href="mailto:mdyusuf911@gmail.com" class="contact-link">
+            <span class="contact-link-icon">📧</span>
+            <div>
+              <div class="contact-link-label">Email</div>
+              <div class="contact-link-val">mdyusuf911@gmail.com</div>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/mdyusufanalytics" target="_blank" class="contact-link">
+            <span class="contact-link-icon">💼</span>
+            <div>
+              <div class="contact-link-label">LinkedIn</div>
+              <div class="contact-link-val">mdyusufanalytics</div>
+            </div>
+          </a>
+          <a href="https://github.com/mdyusufanalytics" target="_blank" class="contact-link">
+            <span class="contact-link-icon">🐙</span>
+            <div>
+              <div class="contact-link-label">GitHub</div>
+              <div class="contact-link-val">mdyusufanalytics</div>
+            </div>
+          </a>
+          <div class="contact-link" style="cursor:default;">
+            <span class="contact-link-icon">📍</span>
+            <div>
+              <div class="contact-link-label">Location</div>
+              <div class="contact-link-val">Kolkata, West Bengal, India</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="contact-form">
+            <div class="form-row">
+              <input type="text" class="form-input" placeholder="Your Name" id="fname" />
+              <input type="email" class="form-input" placeholder="Email Address" id="femail" />
+            </div>
+            <input type="text" class="form-input" placeholder="Subject" id="fsubject" />
+            <textarea class="form-textarea" placeholder="Message" id="fmessage"></textarea>
+            <button class="form-submit" onclick="submitForm()">Send Message →</button>
+            <div class="form-success" id="formSuccess">✅ Message sent! I'll get back to you shortly.</div>
           </div>
         </div>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="skills">
-  <div class="wrapper">
-
-    <p class="section-label fade">/ expertise</p>
-
-    <h2 class="section-title fade">
-      Commercial analytics <em>toolkit</em>
-    </h2>
-
-    <div class="skills-grid fade">
-
-      <div class="skill-card">
-        <h3>Data & Querying</h3>
-        <div class="skill-list">
-          <span class="skill-pill">SQL</span>
-          <span class="skill-pill">CTEs</span>
-          <span class="skill-pill">Window Functions</span>
-          <span class="skill-pill">Star Schema</span>
-          <span class="skill-pill">SQL Server</span>
-        </div>
-      </div>
-
-      <div class="skill-card">
-        <h3>BI & Reporting</h3>
-        <div class="skill-list">
-          <span class="skill-pill">Power BI</span>
-          <span class="skill-pill">DAX</span>
-          <span class="skill-pill">Power Query</span>
-          <span class="skill-pill">KPI Design</span>
-        </div>
-      </div>
-
-      <div class="skill-card">
-        <h3>Commercial Intelligence</h3>
-        <div class="skill-list">
-          <span class="skill-pill">Revenue Analytics</span>
-          <span class="skill-pill">Pricing</span>
-          <span class="skill-pill">Vendor Analysis</span>
-          <span class="skill-pill">Margin Optimisation</span>
-        </div>
-      </div>
-
-      <div class="skill-card">
-        <h3>Python Analytics</h3>
-        <div class="skill-list">
-          <span class="skill-pill">Python</span>
-          <span class="skill-pill">Pandas</span>
-          <span class="skill-pill">NumPy</span>
-          <span class="skill-pill">Matplotlib</span>
-        </div>
-      </div>
-
+  <!-- ─── FOOTER ───────────────────────────────────── -->
+  <footer>
+    <div class="footer-logo">MY.</div>
+    <p style="font-size:0.75rem;">Designed & engineered with precision · Kolkata, India · 2026</p>
+    <div class="footer-links">
+      <a href="https://github.com/mdyusufanalytics" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/mdyusufanalytics" target="_blank">LinkedIn</a>
+      <a href="mailto:mdyusuf911@gmail.com">Email</a>
     </div>
-  </div>
-</section>
+  </footer>
 
-<section>
-  <div class="wrapper">
+  <script>
+    /* Theme Toggle */
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    }
 
-    <p class="section-label fade">/ recruiter trust signals</p>
+    /* Mobile Nav */
+    function toggleMenu() {
+      document.getElementById('mobileNav').classList.toggle('open');
+    }
 
-    <h2 class="section-title fade">
-      Built for <em>decision-making</em>
-    </h2>
+    /* Scroll-reveal */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.08 });
 
-    <div class="trust-grid fade">
+    document.querySelectorAll('section > .wrapper > *:not(h2):not(p.section-label)').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+      observer.observe(el);
+    });
+    document.querySelectorAll('.section-title, .section-label').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(16px)';
+      el.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+      observer.observe(el);
+    });
 
-      <div class="trust-card">
-        <div style="font-size:2rem;">📊</div>
-        <h4>Executive Reporting</h4>
-        <p>Structured KPI systems designed for commercial reviews.</p>
-      </div>
+    /* Form */
+    function submitForm() {
+      const name = document.getElementById('fname').value.trim();
+      const email = document.getElementById('femail').value.trim();
+      const msg = document.getElementById('fmessage').value.trim();
+      if (!name || !email || !msg) { alert('Please fill in all fields.'); return; }
+      document.getElementById('formSuccess').style.display = 'block';
+      ['fname','femail','fsubject','fmessage'].forEach(id => document.getElementById(id).value = '');
+    }
 
-      <div class="trust-card">
-        <div style="font-size:2rem;">💰</div>
-        <h4>P&L Ownership</h4>
-        <p>7+ years managing budgets, costs, and profitability.</p>
-      </div>
-
-      <div class="trust-card">
-        <div style="font-size:2rem;">🏪</div>
-        <h4>Retail & BFSI</h4>
-        <p>Analytics aligned to merchandising and fraud workflows.</p>
-      </div>
-
-      <div class="trust-card">
-        <div style="font-size:2rem;">⚡</div>
-        <h4>Decision Systems</h4>
-        <p>Focused on actionability — not dashboard vanity metrics.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="wrapper">
-
-    <p class="section-label fade">/ contact</p>
-
-    <h2 class="section-title fade">
-      Let's build <em>commercial intelligence</em>
-    </h2>
-
-    <div class="contact-layout fade">
-
-      <div>
-
-        <div class="contact-card">
-          <small>Email</small>
-          <h4>mdyusuf911@gmail.com</h4>
-        </div>
-
-        <div class="contact-card">
-          <small>LinkedIn</small>
-          <h4>linkedin.com/in/mdyusufanalytics</h4>
-        </div>
-
-        <div class="contact-card">
-          <small>GitHub</small>
-          <h4>github.com/Yusufmd24</h4>
-        </div>
-
-        <div class="contact-card">
-          <small>Location</small>
-          <h4>Kolkata, India</h4>
-        </div>
-
-      </div>
-
-      <form action="https://formspree.io/f/your-form-id" method="POST">
-
-        <div class="form-grid">
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="Email Address" required>
-        </div>
-
-        <input type="text" name="subject" placeholder="Subject" required>
-
-        <textarea name="message" placeholder="Tell me about the role, project, or opportunity..." required></textarea>
-
-        <button class="submit-btn" type="submit">Send Message</button>
-
-      </form>
-
-    </div>
-  </div>
-</section>
-
-<footer>
-  Designed & engineered by Md Yusuf · Commercial Data Analyst · 2026
-</footer>
-
-<script>
-
-  function toggleTheme(){
-    const html=document.documentElement;
-    const current=html.getAttribute('data-theme');
-    const next=current==='dark'?'light':'dark';
-    html.setAttribute('data-theme',next);
-    localStorage.setItem('theme',next);
-  }
-
-  const savedTheme=localStorage.getItem('theme');
-  if(savedTheme){
-    document.documentElement.setAttribute('data-theme',savedTheme);
-  }
-
-  const observer=new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('show');
-      }
-    })
-  },{threshold:.1});
-
-  document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
-
-</script>
-
+    /* Active nav highlight */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+      });
+    });
+  </script>
 </body>
 </html>
-```
