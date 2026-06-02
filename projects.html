@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Projects — Md Yusuf · Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --void:#020608;--deep:#050c13;--surface:#091420;--surface2:#0d1b28;
+  --border:#0e2233;--border2:#163245;
+  --cyan:#00cfc4;--cyan2:#00fff0;--cyan-dim:rgba(0,207,196,0.07);--cyan-glow:rgba(0,207,196,0.22);
+  --amber:#e8a020;--amber-dim:rgba(232,160,32,0.1);
+  --green:#22d97a;--red:#ff4466;--purple:#a855f7;--purple-dim:rgba(168,85,247,0.08);
+  --text:#c0d8e8;--text2:#8aadbe;--muted:#3d5a6a;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Space Mono',monospace;background:var(--void);color:var(--text);line-height:1.65;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+
+.grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,207,196,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(0,207,196,0.018) 1px,transparent 1px);
+  background-size:64px 64px;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 80% 80% at 50% 0%,rgba(0,40,60,0.5) 0%,transparent 70%),
+  radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,0.7) 100%);}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.04) 2px,rgba(0,0,0,0.04) 4px);}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(2,6,8,0.96);
+  backdrop-filter:blur(20px);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(1.5rem,5vw,4rem);height:58px;}
+.nav-logo{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.2rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--cyan);text-shadow:0 0 14px var(--cyan-glow);}
+.nav-left{display:flex;align-items:center;gap:1.5rem;}
+.nav-back{font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--muted);padding:0.4rem 0.8rem;border:1px solid var(--border2);transition:all 0.2s;display:flex;align-items:center;gap:0.5rem;}
+.nav-back:hover{color:var(--cyan);border-color:var(--cyan);background:var(--cyan-dim);}
+.nav-right{display:flex;align-items:center;gap:0.75rem;}
+.nav-count{font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;color:var(--muted);}
+.nav-gh{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.78rem;letter-spacing:0.12em;
+  text-transform:uppercase;border:1px solid var(--cyan);color:var(--cyan);background:var(--cyan-dim);
+  padding:0.42rem 1.1rem;transition:all 0.2s;}
+.nav-gh:hover{background:var(--cyan);color:var(--void);}
+
+.wrapper{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3.5rem);}
+
+/* PAGE HEADER */
+.page-header{padding-top:calc(58px + 5rem);padding-bottom:3rem;position:relative;z-index:1;}
+.ph-eyebrow{font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.6rem;}
+.ph-eyebrow::before{content:'▸';}
+.ph-title{font-family:'Rajdhani',sans-serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:700;
+  line-height:0.9;letter-spacing:0.04em;text-transform:uppercase;color:var(--text);margin-bottom:1.5rem;}
+.ph-title em{font-style:normal;color:var(--cyan);display:block;}
+.ph-sub{font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--text2);max-width:560px;line-height:1.85;}
+.ph-sub .hl{color:var(--cyan);}
+
+/* FILTER BAR */
+.filter-bar{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:2.5rem;padding-bottom:3rem;border-bottom:1px solid var(--border);}
+.f-btn{font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;
+  padding:0.4rem 1rem;border:1px solid var(--border2);color:var(--muted);background:transparent;cursor:pointer;transition:all 0.2s;}
+.f-btn:hover,.f-btn.active{color:var(--cyan);border-color:var(--cyan);background:var(--cyan-dim);}
+.f-c{font-family:'Share Tech Mono',monospace;font-size:0.55rem;color:var(--muted);
+  background:var(--surface2);padding:0.1rem 0.4rem;border:1px solid var(--border);margin-left:0.3rem;}
+
+/* PROJECT ENTRIES */
+.projects-list{display:flex;flex-direction:column;gap:0;position:relative;z-index:1;}
+.proj-entry{border:1px solid var(--border);border-top:none;background:var(--deep);
+  transition:background 0.25s;position:relative;overflow:hidden;}
+.proj-entry:first-child{border-top:1px solid var(--border);}
+.proj-entry::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:transparent;transition:background 0.3s;}
+.proj-entry.c-cyan{--acc:var(--cyan);--acc-dim:var(--cyan-dim);}
+.proj-entry.c-red{--acc:var(--red);--acc-dim:rgba(255,68,102,0.07);}
+.proj-entry.c-green{--acc:var(--green);--acc-dim:rgba(34,217,122,0.07);}
+.proj-entry.c-amber{--acc:var(--amber);--acc-dim:var(--amber-dim);}
+.proj-entry.c-purple{--acc:var(--purple);--acc-dim:var(--purple-dim);}
+.proj-entry:hover::before,.proj-entry.open::before{background:var(--acc);}
+.proj-entry:hover,.proj-entry.open{background:var(--surface);}
+
+/* COLLAPSED ROW */
+.proj-row{padding:1.6rem 2rem 1.6rem 2.5rem;
+  display:grid;grid-template-columns:60px 1fr auto 200px 160px;
+  gap:1.5rem;align-items:center;cursor:pointer;user-select:none;}
+.proj-num{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:2.2rem;
+  line-height:1;color:var(--muted);transition:color 0.2s;}
+.proj-entry:hover .proj-num,.proj-entry.open .proj-num{color:var(--acc);}
+.proj-sector{font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:0.3rem;transition:color 0.2s;}
+.proj-entry:hover .proj-sector,.proj-entry.open .proj-sector{color:var(--acc);}
+.proj-name{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.3rem;
+  letter-spacing:0.04em;text-transform:uppercase;color:var(--text);line-height:1.1;}
+.proj-tagline{font-family:'Share Tech Mono',monospace;font-size:0.63rem;color:var(--text2);margin-top:0.3rem;}
+.row-tags{display:flex;flex-wrap:wrap;gap:0.3rem;}
+.rt{font-family:'Share Tech Mono',monospace;font-size:0.55rem;padding:0.18rem 0.5rem;
+  background:var(--surface2);color:var(--muted);border:1px solid var(--border);}
+.row-kpis{display:flex;flex-direction:column;gap:0.45rem;}
+.rk{display:flex;flex-direction:column;}
+.rk-val{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;color:var(--acc);line-height:1;}
+.rk-lbl{font-family:'Share Tech Mono',monospace;font-size:0.52rem;color:var(--muted);}
+.row-toggle{display:flex;flex-direction:column;align-items:flex-end;gap:0.5rem;}
+.r-status{font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:0.08em;
+  text-transform:uppercase;padding:0.2rem 0.6rem;}
+.st-done{background:rgba(34,217,122,0.08);color:var(--green);border:1px solid rgba(34,217,122,0.25);}
+.r-btn{font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.08em;color:var(--muted);
+  display:flex;align-items:center;gap:0.4rem;padding:0.35rem 0.7rem;border:1px solid var(--border);transition:all 0.2s;}
+.proj-entry.open .r-btn{color:var(--acc);border-color:var(--acc);}
+.r-icon{font-size:0.7rem;transition:transform 0.3s;}
+.proj-entry.open .r-icon{transform:rotate(180deg);}
+
+/* EXPANDED BODY */
+.proj-body{display:none;border-top:1px solid var(--border);}
+.proj-entry.open .proj-body{display:block;}
+.body-grid{display:grid;grid-template-columns:1fr 340px;}
+
+/* LEFT */
+.b-left{padding:2.5rem;border-right:1px solid var(--border);}
+.bs{margin-bottom:2.2rem;}
+.bs:last-child{margin-bottom:0;}
+.bs-head{font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:0.16em;
+  text-transform:uppercase;color:var(--acc);padding-bottom:0.65rem;border-bottom:1px solid var(--border);
+  margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
+.bs-head::before{content:'//';color:var(--muted);font-size:0.65rem;}
+.prose{font-size:0.82rem;color:var(--text2);line-height:1.95;}
+.prose strong{color:var(--text);}
+.prose .hl{color:var(--acc);}
+
+/* Pipeline */
+.pipeline{display:flex;align-items:stretch;flex-wrap:wrap;margin-top:0.5rem;}
+.ps{display:flex;flex-direction:column;gap:0.3rem;padding:0.9rem 1.1rem;
+  background:var(--surface2);border:1px solid var(--border);min-width:90px;flex:1;}
+.ps:not(:first-child){border-left:none;}
+.ps-tool{font-family:'Share Tech Mono',monospace;font-size:0.55rem;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--acc);margin-bottom:0.1rem;}
+.ps-action{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.82rem;
+  letter-spacing:0.04em;text-transform:uppercase;color:var(--text);}
+.ps-detail{font-family:'Share Tech Mono',monospace;font-size:0.54rem;color:var(--muted);line-height:1.4;margin-top:0.2rem;}
+.pipe-arr{font-size:1rem;color:var(--muted);padding:0 0.2rem;align-self:center;flex-shrink:0;}
+
+/* Findings */
+.findings{display:flex;flex-direction:column;gap:0.8rem;}
+.finding{padding:1rem 1.2rem;background:var(--surface2);border-left:3px solid var(--border2);transition:border-color 0.2s;}
+.finding:hover{border-left-color:var(--acc);}
+.fi-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.9rem;
+  letter-spacing:0.04em;text-transform:uppercase;color:var(--text);margin-bottom:0.35rem;}
+.fi-text{font-size:0.75rem;color:var(--text2);line-height:1.75;}
+.fi-text strong{color:var(--text);}
+
+/* Recommendations */
+.recs{display:flex;flex-direction:column;gap:0.5rem;}
+.rec{display:flex;align-items:flex-start;gap:0.75rem;padding:0.75rem 1rem;background:var(--surface2);border:1px solid var(--border);}
+.rp{font-family:'Share Tech Mono',monospace;font-size:0.58rem;padding:0.15rem 0.45rem;flex-shrink:0;margin-top:0.1rem;}
+.rp-h{background:rgba(255,68,102,0.1);color:var(--red);border:1px solid rgba(255,68,102,0.25);}
+.rp-m{background:rgba(232,160,32,0.1);color:var(--amber);border:1px solid rgba(232,160,32,0.25);}
+.rp-l{background:rgba(34,217,122,0.08);color:var(--green);border:1px solid rgba(34,217,122,0.2);}
+.rec-text{font-size:0.75rem;color:var(--text2);line-height:1.65;}
+.rec-text strong{color:var(--text);}
+
+/* Code block */
+.code-block{background:var(--void);border:1px solid var(--border);overflow-x:auto;}
+.code-bar{background:var(--surface2);border-bottom:1px solid var(--border);padding:0.5rem 1rem;display:flex;align-items:center;gap:0.6rem;}
+.code-lang{font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--acc);}
+.code-file{font-family:'Share Tech Mono',monospace;font-size:0.58rem;color:var(--muted);margin-left:auto;}
+pre{padding:1.3rem 1.5rem;font-family:'Share Tech Mono',monospace;font-size:0.68rem;line-height:1.7;color:var(--text2);white-space:pre;tab-size:2;}
+.kw{color:#5ab4e0;}.fn{color:var(--cyan);}.str{color:#a8cc8c;}.cm{color:var(--muted);font-style:italic;}.num{color:var(--amber);}
+
+/* RIGHT SIDEBAR */
+.b-right{padding:2.5rem;display:flex;flex-direction:column;gap:2rem;}
+.sb-label{font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--acc);padding-bottom:0.6rem;border-bottom:1px solid var(--border);margin-bottom:0.75rem;}
+.metrics-2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
+.m-box{background:var(--surface2);padding:1.1rem 1.2rem;}
+.m-label{font-family:'Share Tech Mono',monospace;font-size:0.56rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.35rem;}
+.m-val{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.6rem;line-height:1;color:var(--acc);}
+.m-val.sm{font-size:0.9rem;color:var(--text);}
+.m-sub{font-family:'Share Tech Mono',monospace;font-size:0.56rem;color:var(--muted);margin-top:0.2rem;}
+.kpi-strip{display:flex;flex-direction:column;gap:0.6rem;}
+.kpi-r{display:flex;justify-content:space-between;align-items:center;
+  padding:0.65rem 1rem;background:var(--surface2);border-left:3px solid var(--border2);}
+.kpi-n{font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.06em;color:var(--text2);}
+.kpi-v{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;color:var(--acc);}
+.tech-pills{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.tp{font-family:'Share Tech Mono',monospace;font-size:0.6rem;padding:0.3rem 0.7rem;
+  background:var(--surface);color:var(--text2);border:1px solid var(--border);transition:all 0.2s;}
+.tp:hover{color:var(--acc);border-color:rgba(0,207,196,0.3);background:var(--acc-dim);}
+.future-list{display:flex;flex-direction:column;gap:0.4rem;}
+.fl-item{font-family:'Share Tech Mono',monospace;font-size:0.62rem;color:var(--text2);
+  padding:0.5rem 0.8rem;border:1px solid var(--border);background:var(--surface2);
+  display:flex;align-items:center;gap:0.6rem;line-height:1.4;}
+.fl-item::before{content:'→';color:var(--muted);flex-shrink:0;}
+.cta-row{display:flex;gap:0.6rem;flex-wrap:wrap;}
+.cta-p{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.78rem;
+  letter-spacing:0.12em;text-transform:uppercase;padding:0.65rem 1.4rem;
+  background:var(--acc);color:var(--void);border:1px solid var(--acc);
+  transition:all 0.2s;display:inline-block;}
+.cta-p:hover{box-shadow:0 0 20px var(--acc-dim);transform:translateY(-1px);}
+.cta-g{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.78rem;
+  letter-spacing:0.12em;text-transform:uppercase;padding:0.65rem 1.4rem;
+  background:transparent;color:var(--text2);border:1px solid var(--border2);
+  transition:all 0.2s;display:inline-block;}
+.cta-g:hover{border-color:var(--acc);color:var(--acc);}
+
+/* SCROLL FADE */
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease;}
+.fade-in.visible{opacity:1;transform:none;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);position:relative;z-index:1;margin-top:6rem;}
+.footer-inner{padding:2rem clamp(1.5rem,5vw,3.5rem);max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;}
+.foot-logo{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.15em;color:var(--cyan);}
+.foot-r{font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--muted);text-align:right;line-height:1.7;}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<nav>
+  <div class="nav-left">
+    <div class="nav-logo">MD.YUSUF</div>
+    <a href="portfolio-preview.html" class="nav-back">&#8592; Portfolio Home</a>
+  </div>
+  <div class="nav-right">
+    <span class="nav-count">5 PROJECTS DOCUMENTED</span>
+    <a href="https://github.com/Yusufmd24" target="_blank" class="nav-gh">GitHub &#8599;</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="wrapper">
+    <div class="ph-eyebrow">Project Archive &middot; Case Studies</div>
+    <div class="ph-title">Data<br/><em>Projects</em></div>
+    <div class="ph-sub">Each project built around a real business problem.
+      Click any row to expand the full <span class="hl">case study</span> &mdash;
+      pipeline architecture, key findings, SQL code, and business recommendations.</div>
+
+    <div class="filter-bar">
+      <button class="f-btn active" onclick="filterProjects('all',this)">All <span class="f-c">5</span></button>
+      <button class="f-btn" onclick="filterProjects('sql',this)">SQL <span class="f-c">2</span></button>
+      <button class="f-btn" onclick="filterProjects('powerbi',this)">Power BI <span class="f-c">3</span></button>
+      <button class="f-btn" onclick="filterProjects('python',this)">Python <span class="f-c">3</span></button>
+      <button class="f-btn" onclick="filterProjects('bfsi',this)">BFSI <span class="f-c">1</span></button>
+      <button class="f-btn" onclick="filterProjects('retail',this)">Retail <span class="f-c">2</span></button>
+      <button class="f-btn" onclick="filterProjects('excel',this)">Excel <span class="f-c">1</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+<div class="projects-list fade-in">
+
+<!-- ══════════════════════════════════════
+     01 · E-COMMERCE PIPELINE
+════════════════════════════════════════ -->
+<div class="proj-entry c-cyan" data-tags="python sql powerbi retail" id="p1">
+  <div class="proj-row" onclick="tog('p1')">
+    <div class="proj-num">01</div>
+    <div>
+      <div class="proj-sector">E-Commerce &middot; End-to-End Pipeline</div>
+      <div class="proj-name">E-Commerce Data Intelligence Pipeline &amp; Dashboard</div>
+      <div class="proj-tagline">Python &#8594; Excel &#8594; SQL Server &#8594; Power BI &middot; 4-stage analytics pipeline from raw data to BI report</div>
+    </div>
+    <div class="row-tags">
+      <span class="rt">Python</span><span class="rt">SQL Server</span><span class="rt">T-SQL</span>
+      <span class="rt">Power BI</span><span class="rt">DAX</span><span class="rt">Star Schema</span>
+    </div>
+    <div class="row-kpis">
+      <div class="rk"><div class="rk-val">4-Stage</div><div class="rk-lbl">Pipeline depth</div></div>
+      <div class="rk"><div class="rk-val">20+ DAX</div><div class="rk-lbl">Measures shipped</div></div>
+    </div>
+    <div class="row-toggle">
+      <span class="r-status st-done">Complete</span>
+      <span class="r-btn">Expand <span class="r-icon">&#9662;</span></span>
+    </div>
+  </div>
+  <div class="proj-body">
+    <div class="body-grid">
+      <div class="b-left">
+
+        <div class="bs">
+          <div class="bs-head">Business Problem</div>
+          <div class="prose">Most dashboards answer <strong>what happened</strong>. Few explain <em>why it happened</em> or <em>what to do next</em>. This project bridges that gap by treating the pipeline itself as the product&mdash;not the dashboard.
+          <br/><br/>Starting from raw, unstructured e-commerce data with no predefined schema, the goal was to <span class="hl">build a full production pipeline</span> and extract meaningful business signals: revenue concentration, category dependency, repeat customer behaviour, and geographic expansion gaps.</div>
+        </div>
+
+        <div class="bs">
+          <div class="bs-head">Pipeline Architecture</div>
+          <div class="pipeline">
+            <div class="ps"><div class="ps-tool">Python</div><div class="ps-action">Collect</div><div class="ps-detail">pandas, requests &middot; schema normalisation</div></div>
+            <div class="pipe-arr">&#8594;</div>
+            <div class="ps"><div class="ps-tool">Excel</div><div class="ps-action">Clean</div><div class="ps-detail">Dedup, format standardisation, sanity checks</div></div>
+            <div class="pipe-arr">&#8594;</div>
+            <div class="ps"><div class="ps-tool">SQL Server</div><div class="ps-action">Transform</div><div class="ps-detail">JOINs, aggregated views, revenue logic</div></div>
+            <div class="pipe-arr">&#8594;</div>
+            <div class="ps"><div class="ps-tool">Power BI</div><div class="ps-action">Report</div><div class="ps-detail">Star schema, 20+ DAX, 3-tab dashboard</div></div>
+          </div>
+        </div>
+
+        <div class="bs">
+          <div class="bs-head">Key Findings</div>
+          <div class="findings">
+            <div class="finding"><div class="fi-title">Revenue Concentration Risk</div><div class="fi-text">A <strong>single category contributes a disproportionate share of total revenue</strong>. Growth appears strong at surface level but is driven by a narrow segment&mdash;creating structural dependency that is both a strength and a fragility.</div></div>
+            <div class="finding"><div class="fi-title">Pareto Product Distribution</div><div class="fi-text">A small group of SKUs dominates total sales. <strong>Long-tail products contribute minimally</strong>&mdash;portfolio rationalisation could reduce operational complexity without meaningful revenue loss.</div></div>
+            <div class="finding"><div class="fi-title">Customer Acquisition Gap</div><div class="fi-text">Repeat purchase rate is strong, but <strong>new user acquisition appears limited</strong>. Geographic data shows demand concentrated in major metros, leaving secondary-market expansion opportunities untapped.</div></div>
+          </div>
+        </div>
+
+        <div class="bs">
+          <div class="bs-head">Business Recommendations</div>
+          <div class="recs">
+            <div class="rec"><span class="rp rp-h">HIGH</span><div class="rec-text"><strong>Diversify product mix</strong> to reduce revenue concentration risk in the dominant category</div></div>
+            <div class="rec"><span class="rp rp-h">HIGH</span><div class="rec-text"><strong>Invest in new customer acquisition channels</strong>&mdash;retention is strong but growth ceiling risk is emerging</div></div>
+            <div class="rec"><span class="rp rp-m">MED</span><div class="rec-text"><strong>Explore non-metro geographic expansion</strong>&mdash;demand signals exist outside current concentration zones</div></div>
+            <div class="rec"><span class="rp rp-l">LOW</span><div class="rec-text"><strong>Rationalise long-tail SKUs</strong> with minimal revenue contribution to improve operational efficiency</div></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="b-right">
+        <div><div class="sb-label">Project Metrics</div>
+          <div class="metrics-2">
+            <div class="m-box"><div class="m-label">Pipeline Stages</div><div class="m-val">4</div><div class="m-sub">Py&#8594;XLS&#8594;SQL&#8594;BI</div></div>
+            <div class="m-box"><div class="m-label">DAX Measures</div><div class="m-val">20+</div><div class="m-sub">KPIs + time intel</div></div>
+            <div class="m-box"><div class="m-label">Dashboard Tabs</div><div class="m-val">3</div><div class="m-sub">Sales&middot;Customer&middot;Product</div></div>
+            <div class="m-box"><div class="m-label">Schema</div><div class="m-val sm">Star Schema</div><div class="m-sub">Fact + 4 dims</div></div>
+          </div>
+        </div>
+        <div><div class="sb-label">Dashboard Views</div>
+          <div class="kpi-strip">
+            <div class="kpi-r"><span class="kpi-n">Sales Performance</span><span class="kpi-v">Revenue trends</span></div>
+            <div class="kpi-r"><span class="kpi-n">Customer Behaviour</span><span class="kpi-v">Retention &middot; Geo</span></div>
+            <div class="kpi-r"><span class="kpi-n">Product Performance</span><span class="kpi-v">SKU &middot; Category</span></div>
+          </div>
+        </div>
+        <div><div class="sb-label">Full Tech Stack</div>
+          <div class="tech-pills">
+            <span class="tp">Python 3</span><span class="tp">Pandas</span><span class="tp">MS SQL Server</span>
+            <span class="tp">T-SQL</span><span class="tp">Power BI</span><span class="tp">DAX</span>
+            <span class="tp">Power Query</span><span class="tp">Excel</span><span class="tp">Kimball</span>
+          </div>
+        </div>
+        <div><div class="sb-label">Future Scope</div>
+          <div class="future-list">
+            <div class="fl-item">Real-time streaming pipeline integration</div>
+            <div class="fl-item">ML-based demand forecasting layer</div>
+            <div class="fl-item">Customer churn probability scoring</div>
+          </div>
+        </div>
+        <div class="cta-row">
+          <a class="cta-p" href="https://github.com/Yusufmd24/E-Commerce_Data_Pipeline_Intelligence_Dashboard_End-to-End-Analytics_Project" target="_blank">View on GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     02 · FRAUD RISK INTELLIGENCE
+════════════════════════════════════════ -->
+<div class="proj-entry c-red" data-tags="powerbi bfsi" id="p2">
+  <div class="proj-row" onclick="tog('p2')">
+    <div class="proj-num">02</div>
+    <div>
+      <div class="proj-sector">BFSI &middot; Fraud Risk Analytics</div>
+      <div class="proj-name">Credit Card Fraud Risk Intelligence &amp; Prevention System</div>
+      <div class="proj-tagline">Pattern-based detection &middot; 0.17% fraud rate &middot; 12AM&ndash;4AM peak window identified &middot; &minus;30% manual review effort</div>
+    </div>
+    <div class="row-tags">
+      <span class="rt">Power BI</span><span class="rt">DAX</span><span class="rt">Power Query</span><span class="rt">Risk Analytics</span>
+    </div>
+    <div class="row-kpis">
+      <div class="rk"><div class="rk-val">0.17%</div><div class="rk-lbl">Fraud rate detected</div></div>
+      <div class="rk"><div class="rk-val">&minus;30%</div><div class="rk-lbl">Manual review effort</div></div>
+    </div>
+    <div class="row-toggle">
+      <span class="r-status st-done">Complete</span>
+      <span class="r-btn">Expand <span class="r-icon">&#9662;</span></span>
+    </div>
+  </div>
+  <div class="proj-body">
+    <div class="body-grid">
+      <div class="b-left">
+
+        <div class="bs">
+          <div class="bs-head">Business Problem</div>
+          <div class="prose">In digital payment systems, fraud rarely announces itself through volume&mdash;<strong>it hides in patterns</strong>. With a fraud rate of just <span class="hl">0.17%</span>, blanket detection rules fail: they either miss fraud entirely or generate so many false positives that risk teams are overwhelmed.
+          <br/><br/>This project builds a <strong>pattern-based fraud intelligence system</strong> that identifies <em>when</em>, <em>where</em>, and <em>how</em> fraud concentrates&mdash;enabling risk teams to allocate monitoring resources with surgical precision rather than broad filtering.</div>
+        </div>
+
+        <div class="bs">
+          <div class="bs-head">Analytical Approach</div>
+          <div class="pipeline">
+            <div class="ps"><div class="ps-tool">Power Query</div><div class="ps-action">Ingest</div><div class="ps-detail">Type casting, time-bucket derivation, class imbalance handling</div></div>
+            <div class="pipe-arr">&#8594;</div>
+            <div class="ps"><div class="ps-tool">DAX</div><div class="ps-action">Model KPIs</div><div class="ps-detail">Fraud rate, risk index, trend flags, dynamic filtering</div></div>
+            <div class="pipe-arr">&#8594;</div>
+            <div class="ps"><div class="ps-tool">Power BI</div><div class="ps-action">5-Tab Report</div><div class="ps-detail">Executive &middot; Time &middot; Category &middot; Merchant &middot; Drillthrough</div></div>
+          </div>
+        </div>
+
+        <div class="bs">
+          <div class="bs-head">Key Findings</div>
+          <div class="findings">
+            <div class="finding"><div class="fi-title">Time-Based Concentration: 12AM&ndash;4AM</div><div class="fi-text">Fraud is <strong>heavily concentrated in the midnight-to-4AM window</strong>&mdash;deliberate exploitation of low-monitoring periods. This is a behaviorally timed pattern, not statistical noise. Detection models must weight time-of-day as a primary risk signal.</div></div>
+            <div class="finding"><div class="fi-title">Category Skew: Grocery (~55% of Cases)</div><div class="fi-text">The <strong>Grocery category accounts for ~55% of all fraud</strong>&mdash;far exceeding its transaction share. This indicates either weaker card-present validation or higher exposure to stolen credential use in this category specifically.</div></div>
+            <div class="finding"><div class="fi-title">Merchant Clustering: Swiggy &amp; Zomato</div><div class="fi-text"><strong>Swiggy and Zomato emerge as leading merchant contributors</strong> to fraud transactions&mdash;consistent with high-frequency, low-friction environments where velocity is high and review windows are short. Merchant-specific risk scoring is warranted.</div></div>
+          </div>
+        </div>
+
+        <div class="bs">
+          <div class="bs-head">Priority-Ordered Recommendations</div>
+          <div class="recs">
+            <div class="rec"><span class="rp rp-h">HIGH</span><div class="rec-text"><strong>Deploy real-time anomaly alerts for 12AM&ndash;4AM window</strong>&mdash;highest fraud ROI per monitoring hour</div></div>
+            <div class="rec"><span class="rp rp-h">HIGH</span><div class="rec-text"><strong>Implement adaptive authentication for Grocery category</strong>&mdash;step-up verification above a transaction threshold</div></div>
+            <div class="rec"><span class="rp rp-m">MED</span><div class="rec-text"><strong>Apply dynamic risk scoring to Swiggy &amp; Zomato</strong>&mdash;merchant-specific flags feeding real-time decisioning</div></div>
+            <div class="rec"><span class="rp rp-m">MED</span><div class="rec-text"><strong>Shift to combined signal detection</strong>&mdash;time + category + merchant triple-signal combination for precision targeting</div></div>
+            <div class="rec"><span class="rp rp-l">LOW</span><div class="rec-text"><strong>Build investigator drillthrough workflows</strong> for fraud ops teams to query transaction-level detail without SQL access</div></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="b-right">
+        <div><div class="sb-label">Key KPIs</div>
+          <div class="kpi-strip">
+            <div class="kpi-r"><span class="kpi-n">Overall Fraud Rate</span><span class="kpi-v">0.17%</span></div>
+            <div class="kpi-r"><span class="kpi-n">Peak Risk Window</span><span class="kpi-v">12AM&ndash;4AM</span></div>
+            <div class="kpi-r"><span class="kpi-n">Highest Risk Category</span><span class="kpi-v">Grocery ~55%</span></div>
+            <div class="kpi-r"><span class="kpi-n">Top Risk Merchants</span><span class="kpi-v">Swiggy &middot; Zomato</span></div>
+            <div class="kpi-r"><span class="kpi-n">Review Effort Reduction</span><span class="kpi-v">&minus;30%</span></div>
+          </div>
+        </div>
+        <div><div class="sb-label">5-Tab Report Structure</div>
+          <div class="metrics-2">
+            <div class="m-box"><div class="m-label">Tab 1</div><div class="m-val sm">Executive</div><div class="m-sub">KPI overview</div></div>
+            <div class="m-box"><div class="m-label">Tab 2</div><div class="m-val sm">Time Analysis</div><div class="m-sub">Hourly fraud trend</div></div>
+            <div class="m-box"><div class="m-label">Tab 3</div><div class="m-val sm">Category</div><div class="m-sub">Risk segmentation</div></div>
+            <div class="m-box"><div class="m-label">Tab 4+5</div><div class="m-val sm">Merchant</div><div class="m-sub">Ranking &amp; drillthrough</div></div>
+          </div>
+        </div>
+        <div><div class="sb-label">Tech Stack</div>
+          <div class="tech-pills">
+            <span class="tp">Power BI</span><span class="tp">DAX</span><span class="tp">Power Query</span>
+            <span class="tp">Excel/CSV</span><span class="tp">Risk Modelling</span><span class="tp">Time-Series</span>
+          </div>
+        </div>
+        <div><div class="sb-label">Future Scope</div>
+          <div class="future-list">
+            <div class="fl-item">Streaming pipeline via Azure Event Hub / Kafka</div>
+            <div class="fl-item">ML layer: Isolation Forest / XGBoost</div>
+            <div class="fl-item">Dynamic fraud risk score as calculated column</div>
+            <div class="fl-item">Cloud deployment + automated alert distribution</div>
+          </div>
+        </div>
+        <div class="cta-row">
+          <a class="cta-p" href="https://github.com/Yusufmd24/Power-BI-Credit-Card-Fraud-Analysis-Dashboard" target="_blank">View on GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     03 · CUSTOMER SEGMENTATION SQL
+════════════════════════════════════════ -->
+<div class="proj-entry c-green" data-tags="sql retail" id="p3">
+  <div class="proj-row" onclick="tog('p3')">
+    <div class="proj-num">03</div>
+    <div>
+      <div class="proj-sector">CRM &middot; Customer Intelligence</div>
+      <div class="proj-name">Customer Segmentation with SQL &mdash; RFM Analysis</div>
+      <div class="proj-tagline">RFM model on 150K transactions &middot; 5,000 customers &middot; 5-tier segmentation &middot; Pareto 80/20 confirmed via T-SQL</div>
+    </div>
+    <div class="row-tags">
+      <span class="rt">T-SQL</span><span class="rt">CTEs</span><span class="rt">Window Fns</span><span class="rt">RFM</span><span class="rt">Pareto</span>
+    </div>
+    <div class="row-kpis">
+      <div class="rk"><div class="rk-val">150K</div><div class="rk-lbl">Transactions analysed</div></div>
+      <div class="rk"><div class="rk-val">80/20</div><div class="rk-lbl">Pareto confirmed</div></div>
+    </div>
+    <div class="row-toggle">
+      <span class="r-status st-done">Complete</span>
+      <span class="r-btn">Expand <span class="r-icon">&#9662;</span></span>
+    </div>
+  </div>
+  <div class="proj-body">
+    <div class="body-grid">
+      <div class="b-left">
+
+        <div class="bs">
+          <div class="bs-head">Business Problem</div>
+          <div class="prose">Businesses with thousands of customers often treat them uniformly&mdash;applying the same marketing budget and retention effort regardless of actual value delivered.
+          <br/><br/>This project proves that approach is wasteful. Using <span class="hl">150,000 transactions across 5,000 customers over 2 years</span>, the analysis identifies who generates the most revenue, who is at churn risk, and how marketing budgets should be reallocated to <strong>maximise ROI across differentiated segments</strong>.</div>
+        </div>
+
+        <div class="bs">
+          <div class="bs-head">RFM Segmentation Query</div>
+          <div class="code-block">
+            <div class="code-bar"><span class="code-lang">T-SQL</span><span class="code-file">Customer_segmentation.sql</span></div>
+            <pre><span class="cm">-- RFM Segmentation with CTEs</span>
+<span class="kw">WITH</span> customer_metrics <span class="kw">AS</span> (
+  <span class="kw">SELECT</span>
+    customer_id,
+    <span class="fn">ROUND</span>(<span class="fn">SUM</span>(total_amount), <span class="num">2</span>)  <span class="kw">AS</span> Monetary,
+    <span class="fn">COUNT</span>(order_id)               <span class="kw">AS</span> Frequency,
+    <span class="fn">DATEDIFF</span>(day, <span class="fn">MAX</span>(order_date),
+             <span class="fn">GETDATE</span>())            <span class="kw">AS</span> Recency
+  <span class="kw">FROM</span> orders
+  <span class="kw">GROUP BY</span> customer_id
+)
+<span class="kw">SELECT</span> *,
+  <span class="kw">CASE</span>
+    <span class="kw">WHEN</span> Monetary  &gt; <span class="num">5000</span> <span class="kw">AND</span> Frequency &gt; <span class="num">10</span>
+         <span class="kw">THEN</span> <span class="str">'High Value'</span>
+    <span class="kw">WHEN</span> Frequency &gt; <span class="num">8</span>
+         <span class="kw">THEN</span> <span class="str">'Loyal'</span>
+    <span class="kw">WHEN</span> Recency   &gt; <span class="num">180</span>
+         <span class="kw">THEN</span> <span class="str">'Churn Risk'</span>
+    <span class="kw">ELSE</span> <span class="str">'Regular'</span>
+  <span class="kw">END</span> <span class="kw">AS</span> customer_segment
+<span class="kw">FROM</span> customer_metrics;</pre>
+          </div>
+        </div>
+
+        <div class="bs">
+          <div class="bs-head">Pareto Analysis (80/20 Rule)</div>
+          <div class="code-block">
+            <div class="code-bar"><span class="code-lang">T-SQL</span><span class="code-file">Pareto_analysis.sql</span></div>
+            <pre><span class="kw">WITH</span> revenue_table <span class="kw">AS</span> (
+  <span class="kw">SELECT</span> customer_id,
+         <span class="fn">SUM</span>(total_amount) <span class="kw">AS</span> revenue
+  <span class="kw">FROM</span>  orders
+  <span class="kw">GROUP BY</span> customer_id
+),
+revenue_calc <span class="kw">AS</span> (
+  <span class="kw">SELECT</span> customer_id, revenue,
+         <span class="fn">SUM</span>(revenue) <span class="kw">OVER</span>()          <span class="kw">AS</span> total_revenue,
+         revenue * <span class="num">100.0</span>
+           / <span class="fn">SUM</span>(revenue) <span class="kw">OVER</span>()    <span class="kw">AS</span> revenue_pct
+  <span class="kw">FROM</span>  revenue_table
+)
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> revenue_calc
+<span class="kw">ORDER BY</span> revenue <span class="kw">DESC</span>;</pre>
+          </div>
+        </div>
+
+        <div class="bs">
+          <div class="bs-head">Key Findings</div>
+          <div class="findings">
+            <div class="finding"><div class="fi-title">Pareto Law Confirmed</div><div class="fi-text">The <strong>top 20% of customers generate ~80% of total revenue</strong>. High-value customers (Monetary &gt; 5,000 &amp; Frequency &gt; 10) form a small but critical retention target with outsized business impact.</div></div>
+            <div class="finding"><div class="fi-title">Churn Risk Cohort Identified</div><div class="fi-text">A meaningful cohort has not purchased in <strong>over 180 days</strong>&mdash;at active churn risk but recoverable with the right re-engagement trigger within a 30-day window.</div></div>
+            <div class="finding"><div class="fi-title">Frequency and Spend Are Decoupled</div><div class="fi-text">Loyal customers (Frequency &gt; 8) are not always high spenders&mdash;<strong>frequency and monetary value are partially independent</strong>, requiring separate retention and upsell strategies per segment.</div></div>
+          </div>
+        </div>
+
+        <div class="bs">
+          <div class="bs-head">Business Recommendations</div>
+          <div class="recs">
+            <div class="rec"><span class="rp rp-h">HIGH</span><div class="rec-text"><strong>Loyalty rewards programme for High Value segment</strong>&mdash;cost of retention is far lower than reacquisition</div></div>
+            <div class="rec"><span class="rp rp-h">HIGH</span><div class="rec-text"><strong>Re-engagement campaign for Churn Risk cohort</strong>&mdash;targeted discount or personalised outreach within 30-day window</div></div>
+            <div class="rec"><span class="rp rp-m">MED</span><div class="rec-text"><strong>Upsell to Loyal Customers</strong>&mdash;frequency is established; focus on increasing average order value</div></div>
+            <div class="rec"><span class="rp rp-l">LOW</span><div class="rec-text"><strong>Reallocate marketing budget</strong> away from Regular segment toward High Value and Churn Risk tiers</div></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="b-right">
+        <div><div class="sb-label">Dataset Scale</div>
+          <div class="kpi-strip">
+            <div class="kpi-r"><span class="kpi-n">Total Transactions</span><span class="kpi-v">150,000</span></div>
+            <div class="kpi-r"><span class="kpi-n">Unique Customers</span><span class="kpi-v">5,000</span></div>
+            <div class="kpi-r"><span class="kpi-n">Time Span</span><span class="kpi-v">2 Years</span></div>
+            <div class="kpi-r"><span class="kpi-n">Segments Created</span><span class="kpi-v">5 Tiers</span></div>
+          </div>
+        </div>
+        <div><div class="sb-label">Segment Map</div>
+          <div class="metrics-2">
+            <div class="m-box"><div class="m-label">Tier 1</div><div class="m-val sm" style="color:var(--green);">High Value</div><div class="m-sub">M&gt;5K &amp; Freq&gt;10</div></div>
+            <div class="m-box"><div class="m-label">Tier 2</div><div class="m-val sm" style="color:var(--cyan);">Loyal</div><div class="m-sub">Frequency &gt; 8</div></div>
+            <div class="m-box"><div class="m-label">Tier 3</div><div class="m-val sm" style="color:var(--text2);">Regular</div><div class="m-sub">Baseline segment</div></div>
+            <div class="m-box"><div class="m-label">Tier 4</div><div class="m-val sm" style="color:var(--red);">Churn Risk</div><div class="m-sub">Recency &gt; 180d</div></div>
+          </div>
+        </div>
+        <div><div class="sb-label">SQL Techniques</div>
+          <div class="tech-pills">
+            <span class="tp">CTEs</span><span class="tp">Window Functions</span><span class="tp">DATEDIFF</span>
+            <span class="tp">CASE WHEN</span><span class="tp">SUM OVER()</span><span class="tp">GROUP BY</span>
+            <span class="tp">Pareto</span><span class="tp">NTILE</span>
+          </div>
+        </div>
+        <div class="cta-row">
+          <a class="cta-p" href="https://github.com/Yusufmd24/Customer-Segmentation-Project-with-SQL" target="_blank">View on GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     04 · INDIAN HOTELS PYTHON EDA
+════════════════════════════════════════ -->
+<div class="proj-entry c-amber" data-tags="python" id="p4">
+  <div class="proj-row" onclick="tog('p4')">
+    <div class="proj-num">04</div>
+    <div>
+      <div class="proj-sector">Hospitality &middot; Python EDA</div>
+      <div class="proj-name">Indian Hotels Analysis with Python</div>
+      <div class="proj-tagline">Full EDA pipeline &middot; Pricing patterns &middot; Occupancy trends &middot; Seasonal demand &middot; Regional performance analysis</div>
+    </div>
+    <div class="row-tags">
+      <span class="rt">Python</span><span class="rt">Pandas</span><span class="rt">Matplotlib</span><span class="rt">Seaborn</span><span class="rt">Jupyter</span>
+    </div>
+    <div class="row-kpis">
+      <div class="rk"><div class="rk-val">EDA</div><div class="rk-lbl">Full pipeline</div></div>
+      <div class="rk"><div class="rk-val">Multi-dim</div><div class="rk-lbl">Analysis depth</div></div>
+    </div>
+    <div class="row-toggle">
+      <span class="r-status st-done">Complete</span>
+      <span class="r-btn">Expand <span class="r-icon">&#9662;</span></span>
+    </div>
+  </div>
+  <div class="proj-body">
+    <div class="body-grid">
+      <div class="b-left">
+
+        <div class="bs">
+          <div class="bs-head">Business Problem</div>
+          <div class="prose">The Indian hotel industry is highly fragmented. Pricing strategies, occupancy rates, and guest behaviour vary dramatically by region, category, and season&mdash;yet most operators make pricing decisions without structured data analysis.
+          <br/><br/>This project applies <span class="hl">exploratory data analysis</span> to surface the patterns operators and investors need: which hotel categories maximise RevPAR, when demand peaks and troughs, and which regions are <strong>structurally under- or over-priced relative to occupancy signals</strong>.</div>
+        </div>
+
+        <div class="bs">
+          <div class="bs-head">EDA Pipeline</div>
+          <div class="pipeline">
+            <div class="ps"><div class="ps-tool">Pandas</div><div class="ps-action">Load &amp; Clean</div><div class="ps-detail">Null handling, dtype standardisation, outlier detection</div></div>
+            <div class="pipe-arr">&#8594;</div>
+            <div class="ps"><div class="ps-tool">NumPy</div><div class="ps-action">Compute</div><div class="ps-detail">RevPAR, ADR, occupancy rate calculations</div></div>
+            <div class="pipe-arr">&#8594;</div>
+            <div class="ps"><div class="ps-tool">Seaborn / Matplotlib</div><div class="ps-action">Visualise</div><div class="ps-detail">Heatmaps, distributions, trend lines, regional charts</div></div>
+          </div>
+        </div>
+
+        <div class="bs">
+          <div class="bs-head">Key Findings</div>
+          <div class="findings">
+            <div class="finding"><div class="fi-title">Seasonal Demand Concentration</div><div class="fi-text">Occupancy shows strong seasonal concentration. <strong>Peak demand windows create pricing leverage</strong> that dynamic-pricing operators capture&mdash;while flat-rate hotels leave significant RevPAR on the table through the same periods.</div></div>
+            <div class="finding"><div class="fi-title">Regional Price-Occupancy Mismatch</div><div class="fi-text">Several regions show <strong>high occupancy at low ADR</strong>&mdash;under-pricing relative to actual demand. Other regions show the inverse: premium pricing with below-average occupancy, suggesting brand overreach beyond addressable market.</div></div>
+            <div class="finding"><div class="fi-title">Category Performance Divergence</div><div class="fi-text">Business hotel categories outperform on weekday occupancy, but <strong>leisure properties generate higher weekend RevPAR</strong>. Optimal portfolio strategy is location-type dependent, not universal.</div></div>
+          </div>
+        </div>
+
+        <div class="bs">
+          <div class="bs-head">Business Recommendations</div>
+          <div class="recs">
+            <div class="rec"><span class="rp rp-h">HIGH</span><div class="rec-text"><strong>Implement dynamic pricing models for peak seasonal windows</strong>&mdash;static pricing leaves 15&ndash;25% RevPAR uncaptured</div></div>
+            <div class="rec"><span class="rp rp-m">MED</span><div class="rec-text"><strong>Reprice under-priced high-occupancy regions</strong>&mdash;demand signal exists; pricing strategy is not capitalising on it</div></div>
+            <div class="rec"><span class="rp rp-l">LOW</span><div class="rec-text"><strong>Differentiate weekday vs. weekend strategy</strong> for mixed business/leisure markets to maximise RevPAR across both segments</div></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="b-right">
+        <div><div class="sb-label">Analysis Dimensions</div>
+          <div class="kpi-strip">
+            <div class="kpi-r"><span class="kpi-n">Pricing</span><span class="kpi-v">ADR &middot; RevPAR</span></div>
+            <div class="kpi-r"><span class="kpi-n">Occupancy</span><span class="kpi-v">Seasonal trends</span></div>
+            <div class="kpi-r"><span class="kpi-n">Geography</span><span class="kpi-v">Regional split</span></div>
+            <div class="kpi-r"><span class="kpi-n">Category</span><span class="kpi-v">Business vs leisure</span></div>
+          </div>
+        </div>
+        <div><div class="sb-label">Tech Stack</div>
+          <div class="tech-pills">
+            <span class="tp">Python 3</span><span class="tp">Pandas</span><span class="tp">NumPy</span>
+            <span class="tp">Matplotlib</span><span class="tp">Seaborn</span><span class="tp">Jupyter Notebook</span>
+          </div>
+        </div>
+        <div><div class="sb-label">Future Scope</div>
+          <div class="future-list">
+            <div class="fl-item">Power BI dashboard layer on EDA outputs</div>
+            <div class="fl-item">Price elasticity modelling per region</div>
+            <div class="fl-item">Sentiment analysis from guest review data</div>
+          </div>
+        </div>
+        <div class="cta-row">
+          <a class="cta-p" href="https://github.com/Yusufmd24/Indian_Hotels_Analysis_with_Python" target="_blank">View on GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     05 · EXCEL DASHBOARD
+════════════════════════════════════════ -->
+<div class="proj-entry c-purple" data-tags="retail excel" id="p5">
+  <div class="proj-row" onclick="tog('p5')">
+    <div class="proj-num">05</div>
+    <div>
+      <div class="proj-sector">E-Commerce &middot; Excel Business Intelligence</div>
+      <div class="proj-name">E-Commerce Sales Excel Dashboard</div>
+      <div class="proj-tagline">Advanced Excel BI &middot; Pivot tables, dynamic charts &amp; KPI scorecards &middot; MoM revenue tracking &middot; Category performance</div>
+    </div>
+    <div class="row-tags">
+      <span class="rt">Excel</span><span class="rt">Pivot Tables</span><span class="rt">Dynamic Charts</span><span class="rt">KPI Design</span>
+    </div>
+    <div class="row-kpis">
+      <div class="rk"><div class="rk-val">Advanced</div><div class="rk-lbl">Excel BI</div></div>
+      <div class="rk"><div class="rk-val">MoM</div><div class="rk-lbl">Revenue tracking</div></div>
+    </div>
+    <div class="row-toggle">
+      <span class="r-status st-done">Complete</span>
+      <span class="r-btn">Expand <span class="r-icon">&#9662;</span></span>
+    </div>
+  </div>
+  <div class="proj-body">
+    <div class="body-grid">
+      <div class="b-left">
+
+        <div class="bs">
+          <div class="bs-head">Purpose &amp; Context</div>
+          <div class="prose">Excel remains the dominant reporting tool across most organisations&mdash;particularly in SMEs, retail, and operations teams where SQL or BI licences don't exist. This project demonstrates that <span class="hl">Excel is not just for data entry</span>.
+          <br/><br/>With proper pivot architecture, dynamic named ranges, and structured KPI design, Excel can deliver <strong>production-grade business intelligence without requiring any additional tooling</strong>&mdash;making insights accessible to every stakeholder.</div>
+        </div>
+
+        <div class="bs">
+          <div class="bs-head">Dashboard Architecture</div>
+          <div class="pipeline">
+            <div class="ps"><div class="ps-tool">Raw Data</div><div class="ps-action">Source Sheet</div><div class="ps-detail">Transaction-level: date, product, category, revenue</div></div>
+            <div class="pipe-arr">&#8594;</div>
+            <div class="ps"><div class="ps-tool">Pivot Layer</div><div class="ps-action">Aggregate</div><div class="ps-detail">Revenue by month, category, product&mdash;slicer-connected</div></div>
+            <div class="pipe-arr">&#8594;</div>
+            <div class="ps"><div class="ps-tool">Dashboard</div><div class="ps-action">KPI View</div><div class="ps-detail">Scorecard, trend charts, category mix, MoM delta</div></div>
+          </div>
+        </div>
+
+        <div class="bs">
+          <div class="bs-head">Key Analyses</div>
+          <div class="findings">
+            <div class="finding"><div class="fi-title">MoM Revenue Trend</div><div class="fi-text">Dynamic month-over-month revenue comparison with <strong>conditional formatting to flag growth vs. decline periods</strong>. Enables managers to identify trend breaks at a glance&mdash;no SQL access required.</div></div>
+            <div class="finding"><div class="fi-title">Category Performance Mix</div><div class="fi-text">Pivot-driven category breakdown reveals <strong>which product lines drive margin versus volume</strong>&mdash;separating revenue-heavy categories from high-frequency, lower-margin ones.</div></div>
+            <div class="finding"><div class="fi-title">Executive KPI Scorecard</div><div class="fi-text">Single-view scorecard with Total Revenue, AOV, Order Count, and Top Category&mdash;<strong>designed for executive consumption</strong> with no data literacy required. Shareable as a standard .xlsx.</div></div>
+          </div>
+        </div>
+
+        <div class="bs">
+          <div class="bs-head">Business Value</div>
+          <div class="recs">
+            <div class="rec"><span class="rp rp-h">VALUE</span><div class="rec-text"><strong>Zero tool dependency for end users</strong>&mdash;any stakeholder with Excel can view, filter, and explore the dashboard</div></div>
+            <div class="rec"><span class="rp rp-m">VALUE</span><div class="rec-text"><strong>Shareable with any stakeholder</strong> via standard .xlsx without Power BI licence requirements</div></div>
+            <div class="rec"><span class="rp rp-l">VALUE</span><div class="rec-text"><strong>Template architecture reusable</strong> across product categories and business units with minimal reconfiguration</div></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="b-right">
+        <div><div class="sb-label">Dashboard Components</div>
+          <div class="kpi-strip">
+            <div class="kpi-r"><span class="kpi-n">KPI Scorecard</span><span class="kpi-v">Revenue &middot; AOV &middot; Orders</span></div>
+            <div class="kpi-r"><span class="kpi-n">MoM Trend Chart</span><span class="kpi-v">12-month view</span></div>
+            <div class="kpi-r"><span class="kpi-n">Category Mix</span><span class="kpi-v">Pivot + chart</span></div>
+            <div class="kpi-r"><span class="kpi-n">Interactive Slicers</span><span class="kpi-v">Dynamic filters</span></div>
+          </div>
+        </div>
+        <div><div class="sb-label">Excel Techniques</div>
+          <div class="tech-pills">
+            <span class="tp">Pivot Tables</span><span class="tp">XLOOKUP</span><span class="tp">Dynamic Charts</span>
+            <span class="tp">Slicers</span><span class="tp">Cond. Formatting</span><span class="tp">Named Ranges</span>
+            <span class="tp">Dashboard Layout</span>
+          </div>
+        </div>
+        <div><div class="sb-label">Future Scope</div>
+          <div class="future-list">
+            <div class="fl-item">Power Query automation for data refresh</div>
+            <div class="fl-item">Migrate pivot layer to Power BI for scalability</div>
+            <div class="fl-item">Add forecasting via FORECAST.ETS</div>
+          </div>
+        </div>
+        <div class="cta-row">
+          <a class="cta-p" href="https://github.com/Yusufmd24/ecommerce-sales-excel-dashboard" target="_blank">View on GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /projects-list -->
+</div><!-- /wrapper -->
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="foot-logo">MD.YUSUF &middot; DATA ANALYST</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--muted);margin-top:0.3rem;">Kolkata, India &middot; SQL &middot; Power BI &middot; Python</div>
+    </div>
+    <div class="foot-r">
+      <a href="portfolio-preview.html" style="color:var(--cyan);">&#8592; Portfolio Home</a><br/>
+      <a href="https://github.com/Yusufmd24" target="_blank" style="color:var(--muted);">github.com/Yusufmd24</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function tog(id){
+  const el=document.getElementById(id);
+  const was=el.classList.contains('open');
+  document.querySelectorAll('.proj-entry.open').forEach(e=>e.classList.remove('open'));
+  if(!was){
+    el.classList.add('open');
+    setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),60);
+  }
+}
+function filterProjects(tag,btn){
+  document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.proj-entry').forEach(el=>{
+    if(tag==='all'){el.style.display='';return;}
+    el.style.display=(el.dataset.tags||'').includes(tag)?'':'none';
+  });
+}
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:0.05});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
