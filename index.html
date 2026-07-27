@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md Yusuf — Data Analyst</title>
+<meta name="description" content="Md Yusuf — Data Analyst based in Kolkata, India. SQL, Power BI, Python. Commercial analytics for BFSI, Retail and SaaS.">
+<style>
+  :root{
+    --bg: #FAFAF8;
+    --surface: #FFFFFF;
+    --ink: #17171A;
+    --ink-soft: #55555C;
+    --line: #E5E4E0;
+    --accent: #0F6E5E;
+    --accent-soft: #E5F2EE;
+    --radius: 10px;
+    --max: 960px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:"Fraunces","Georgia",serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px;}
+  .pill{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:12.5px; padding:5px 12px; border:1px solid var(--line);
+    border-radius:999px; color:var(--ink-soft); background:var(--surface);
+  }
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,250,248,0.9); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px; max-width:var(--max); margin:0 auto;
+  }
+  .logo{font-family:"Fraunces",serif; font-weight:700; font-size:19px;}
+  .nav-links{display:flex; gap:26px; align-items:center;}
+  .nav-links a{font-size:14.5px; color:var(--ink-soft); transition:color .15s;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-right{display:flex; align-items:center; gap:14px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--ink); color:#fff !important;
+    padding:9px 16px; border-radius:8px; font-size:14px; font-weight:500;
+    transition:background .15s;
+  }
+  .btn:hover{background:var(--accent);}
+  .icon-link{color:var(--ink-soft); display:flex;}
+  .icon-link:hover{color:var(--ink);}
+  .nav-toggle{display:none; background:none; border:none; cursor:pointer;}
+
+  /* Hero */
+  .hero{padding:76px 0 56px;}
+  .status{
+    display:inline-flex; align-items:center; gap:8px; margin-bottom:22px;
+    font-size:13px; letter-spacing:.03em; color:var(--ink-soft);
+  }
+  .status .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);}
+  .hero h1{font-size:clamp(34px, 5vw, 54px); line-height:1.08; max-width:820px;}
+  .hero h1 em{font-style:italic; color:var(--accent);}
+  .hero p.lede{
+    margin-top:20px; font-size:17px; color:var(--ink-soft); max-width:600px;
+  }
+  .hero-stack{display:flex; flex-wrap:wrap; gap:8px; margin-top:28px;}
+  .hero-cta{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+  .btn-outline{
+    border:1px solid var(--line); padding:9px 16px; border-radius:8px;
+    font-size:14px; color:var(--ink); background:var(--surface);
+  }
+  .btn-outline:hover{border-color:var(--ink);}
+
+  /* Stat strip */
+  .stats{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; margin-top:52px;
+  }
+  .stat{background:var(--surface); padding:22px 20px;}
+  .stat .num{font-family:"Fraunces",serif; font-size:28px; font-weight:600;}
+  .stat .label{font-size:12.5px; color:var(--ink-soft); margin-top:4px; letter-spacing:.02em; text-transform:uppercase;}
+
+  /* Section shared */
+  section{padding:64px 0;}
+  .eyebrow{
+    font-size:12.5px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--accent); font-weight:600; margin-bottom:10px;
+  }
+  section h2{font-size:clamp(26px,3vw,34px);}
+  .section-head{margin-bottom:36px;}
+
+  /* Three-up cards (Research/Projects/Blog analog) */
+  .cards3{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px; display:flex; flex-direction:column; gap:14px;
+  }
+  .card h3{font-size:19px;}
+  .card p{color:var(--ink-soft); font-size:14.5px; margin:0; flex:1;}
+  .card a.more{font-size:14px; font-weight:500; color:var(--accent); display:inline-flex; gap:6px; align-items:center;}
+
+  /* Active work */
+  .worklist{border-top:1px solid var(--line);}
+  .work-row{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:18px 0; border-bottom:1px solid var(--line);
+  }
+  .work-row .left{display:flex; align-items:center; gap:12px;}
+  .work-row .flag{
+    width:8px; height:8px; border-radius:50%; background:var(--accent); flex:none;
+  }
+  .work-row .name{font-weight:600; font-size:15.5px;}
+  .work-row .tag{color:var(--ink-soft); font-size:13.5px;}
+  .work-row .link{font-size:13.5px; color:var(--accent); font-weight:500;}
+
+  /* Experience */
+  .exp-item{
+    display:grid; grid-template-columns:170px 1fr; gap:24px;
+    padding:26px 0; border-top:1px solid var(--line);
+  }
+  .exp-item:last-child{border-bottom:1px solid var(--line);}
+  .exp-date{color:var(--ink-soft); font-size:13.5px; padding-top:2px;}
+  .exp-role{font-size:17px; font-weight:600;}
+  .exp-org{color:var(--accent); font-size:14px; margin-top:2px; font-weight:500;}
+  .exp-item ul{margin:12px 0 0; padding-left:18px; color:var(--ink-soft); font-size:14.5px;}
+  .exp-item li{margin-bottom:6px;}
+  .tagrow{display:flex; flex-wrap:wrap; gap:7px; margin-top:14px;}
+  .tag{
+    font-size:12px; padding:4px 10px; border-radius:999px;
+    background:var(--accent-soft); color:var(--accent); font-weight:600;
+  }
+
+  /* Skills */
+  .skillgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  .skillcard{border:1px solid var(--line); border-radius:var(--radius); padding:20px; background:var(--surface);}
+  .skillcard h4{font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--accent); margin:0 0 12px;}
+  .skillcard .items{display:flex; flex-wrap:wrap; gap:6px;}
+  .skillcard .items span{font-size:13px; color:var(--ink-soft);}
+  .skillcard .items span:not(:last-child)::after{content:"·"; margin-left:6px; color:var(--line);}
+
+  /* Projects */
+  .projects{display:flex; flex-direction:column; gap:18px;}
+  .project{
+    border:1px solid var(--line); border-radius:var(--radius); background:var(--surface);
+    padding:26px; display:grid; grid-template-columns:1fr auto; gap:20px; align-items:start;
+  }
+  .project.featured{border-color:var(--accent);}
+  .project-meta{display:flex; gap:10px; align-items:center; margin-bottom:10px;}
+  .project-cat{font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft);}
+  .project h3{font-size:19px; margin-bottom:8px;}
+  .project p{color:var(--ink-soft); font-size:14.5px; margin:0 0 14px; max-width:560px;}
+  .project-impact{display:flex; gap:22px; margin-top:6px;}
+  .project-impact div{text-align:left;}
+  .project-impact .n{font-family:"Fraunces",serif; font-weight:600; font-size:20px;}
+  .project-impact .l{font-size:11.5px; color:var(--ink-soft); text-transform:uppercase;}
+  .project-side{display:flex; flex-direction:column; align-items:flex-end; gap:12px;}
+
+  /* About */
+  .about-grid{display:grid; grid-template-columns:200px 1fr; gap:40px; align-items:start;}
+  .avatar{
+    width:200px; height:200px; border-radius:var(--radius); background:var(--accent-soft);
+    display:flex; align-items:center; justify-content:center;
+    font-family:"Fraunces",serif; font-size:56px; color:var(--accent); font-weight:600;
+    border:1px solid var(--line);
+  }
+  .about-grid h3{font-size:22px; margin-bottom:6px;}
+  .about-grid .role{color:var(--ink-soft); font-size:14.5px; margin-bottom:16px;}
+
+  /* Education / Certs */
+  .edu-item{border-top:1px solid var(--line); padding:22px 0;}
+  .edu-item:last-child{border-bottom:1px solid var(--line);}
+  .edu-top{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+  .edu-title{font-weight:600; font-size:16px;}
+  .edu-sub{color:var(--accent); font-size:13.5px; font-weight:500;}
+  .edu-year{color:var(--ink-soft); font-size:13.5px;}
+  .edu-list{margin:12px 0 0; padding-left:18px; color:var(--ink-soft); font-size:14px;}
+
+  .certgrid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+  .certcard{border:1px solid var(--line); border-radius:var(--radius); padding:18px; background:var(--surface);}
+  .certcard h4{font-size:15px; margin:0 0 6px;}
+  .certcard .sub{font-size:12.5px; color:var(--ink-soft);}
+  .certcard .badge{
+    display:inline-block; margin-top:10px; font-size:11px; font-weight:700;
+    color:var(--accent); letter-spacing:.03em; text-transform:uppercase;
+  }
+
+  /* Contact */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-size:13px; color:var(--ink-soft); margin-bottom:6px;}
+  .field input, .field textarea{
+    width:100%; border:1px solid var(--line); border-radius:8px; padding:10px 12px;
+    font-family:inherit; font-size:14.5px; background:var(--surface); color:var(--ink);
+  }
+  .field textarea{resize:vertical; min-height:110px;}
+  .contact-info .row{display:flex; gap:12px; padding:14px 0; border-top:1px solid var(--line);}
+  .contact-info .row:last-child{border-bottom:1px solid var(--line);}
+  .contact-info .label{font-size:12.5px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em; width:120px; flex:none;}
+
+  footer{border-top:1px solid var(--line); padding:48px 0 32px; margin-top:20px;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:32px;}
+  .footer-grid h5{font-size:12.5px; text-transform:uppercase; color:var(--ink-soft); letter-spacing:.05em; margin:0 0 14px;}
+  .footer-grid a{display:block; font-size:14px; color:var(--ink); margin-bottom:10px;}
+  .footer-social{display:flex; gap:14px; margin-top:6px;}
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-top:36px; padding-top:20px; border-top:1px solid var(--line);
+    font-size:13px; color:var(--ink-soft); flex-wrap:wrap; gap:10px;
+  }
+
+  @media (max-width:860px){
+    .nav-links, .nav-right .btn{display:none;}
+    .stats{grid-template-columns:repeat(2,1fr);}
+    .cards3, .skillgrid, .certgrid{grid-template-columns:1fr;}
+    .exp-item{grid-template-columns:1fr;}
+    .about-grid{grid-template-columns:1fr;}
+    .avatar{width:140px; height:140px; font-size:40px;}
+    .project{grid-template-columns:1fr;}
+    .project-side{align-items:flex-start;}
+    .contact-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr; gap:24px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="#top">Md Yusuf</a>
+    <nav class="nav-links">
+      <a href="#work">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <a class="icon-link" href="https://github.com/Yusufmd24" aria-label="GitHub" target="_blank" rel="noopener">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.79-.25.79-.55 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.77.12 3.06.74.8 1.19 1.83 1.19 3.09 0 4.43-2.7 5.41-5.27 5.69.42.36.78 1.08.78 2.18 0 1.57-.01 2.84-.01 3.23 0 .3.21.66.79.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+      </a>
+      <a class="icon-link" href="https://www.linkedin.com/in/md-yusuf-2409" aria-label="LinkedIn" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.11 20.45H3.56V9h3.55v11.45z"/></svg>
+      </a>
+      <a class="btn" href="mailto:mdyusuf911@gmail.com">Hire Me</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+
+    <!-- HERO -->
+    <section class="hero" style="padding-bottom:0;">
+      <div class="status"><span class="dot"></span> KOLKATA, IN &nbsp;·&nbsp; OPEN TO OFFERS</div>
+      <h1>Data Analyst turning<br>transactional data into <em>commercial decisions</em>.</h1>
+      <p class="lede">I'm Md Yusuf, a Kolkata-based data analyst focused on revenue, margin and category analytics. I bring 7+ years of P&amp;L ownership from Events and Manufacturing into a business-first analytical lens — every model starts with the decision it needs to change.</p>
+      <div class="hero-stack">
+        <span class="pill">SQL Server</span>
+        <span class="pill">Power BI</span>
+        <span class="pill">DAX</span>
+        <span class="pill">Power Query</span>
+        <span class="pill">Python</span>
+        <span class="pill">Pandas</span>
+        <span class="pill">Excel</span>
+      </div>
+      <div class="hero-cta">
+        <a class="btn" href="#projects">See Projects</a>
+        <a class="btn-outline" href="#contact">Get in Touch</a>
+        <a class="btn-outline" href="https://www.linkedin.com/in/md-yusuf-2409" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="num">900K+</div><div class="label">Rows Analysed</div></div>
+        <div class="stat"><div class="num">12%</div><div class="label">Cost Reduction</div></div>
+        <div class="stat"><div class="num">40%</div><div class="label">Review Saved</div></div>
+        <div class="stat"><div class="num">6</div><div class="label">Projects Built</div></div>
+      </div>
+    </section>
+
+    <!-- THREE-UP OVERVIEW -->
+    <section>
+      <div class="cards3">
+        <div class="card">
+          <h3>Experience</h3>
+          <p>7+ years across analytics, event operations and manufacturing — P&amp;L ownership, vendor negotiation and revenue accountability.</p>
+          <a class="more" href="#work">See work history →</a>
+        </div>
+        <div class="card">
+          <h3>Projects</h3>
+          <p>End-to-end analytics builds spanning SQL, Power BI and Python — from star-schema retail models to fraud detection dashboards.</p>
+          <a class="more" href="#projects">See case studies →</a>
+        </div>
+        <div class="card">
+          <h3>Skills</h3>
+          <p>A commercial analytics toolkit: SQL data modelling, Power BI/DAX reporting, Python EDA pipelines and financial spreadsheet work.</p>
+          <a class="more" href="#skills">See toolkit →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACTIVE WORK -->
+    <section style="padding-top:0;">
+      <div class="section-head">
+        <div class="eyebrow">Currently</div>
+        <h2>Active Work</h2>
+      </div>
+      <div class="worklist">
+        <div class="work-row">
+          <div class="left"><span class="flag"></span><span class="name">Retail Merchandising Analytics</span><span class="tag">— flagship project, star schema + Power BI</span></div>
+          <a class="link" href="https://github.com/Yusufmd24/Retail-Merchandising-Analytics" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+        <div class="work-row">
+          <div class="left"><span class="flag"></span><span class="name">SaaS Metrics Intelligence Dashboard</span><span class="tag">— DAX audit + 5-page Power BI build</span></div>
+          <a class="link" href="https://github.com/Yusufmd24" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="work">
+      <div class="section-head">
+        <div class="eyebrow">Work History</div>
+        <h2>Experience</h2>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">Jan 2026 — Present</div>
+        <div>
+          <div class="exp-role">Freelance Data Analyst</div>
+          <div class="exp-org">Self-Employed</div>
+          <ul>
+            <li>Built a production-quality merchandising intelligence system on ~50K rows — 6 SQL queries, star schema, 5-tab Power BI merchant dashboard.</li>
+            <li>Designed a 5-page Power BI fraud detection report with drill-through across 10,000+ transactions, cutting review effort by ~40%.</li>
+            <li>Delivered an end-to-end Python → SQL → Power BI e-commerce pipeline on 400K+ rows, identifying 5–12% margin improvement potential.</li>
+          </ul>
+          <div class="tagrow"><span class="tag">Power BI</span><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">DAX</span><span class="tag">Star Schema</span></div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">May 2020 — Jun 2025</div>
+        <div>
+          <div class="exp-role">Event Operations Manager</div>
+          <div class="exp-org">Firefox Events</div>
+          <ul>
+            <li>Owned P&amp;L across 50+ large-scale events with full revenue forecasting accountability.</li>
+            <li>Built Excel and Power BI financial tracking models that reduced vendor costs 12% year-over-year.</li>
+            <li>Ran operational dashboards tracking lead-to-deal conversion, event ROI and client retention.</li>
+          </ul>
+          <div class="tagrow"><span class="tag">Power BI</span><span class="tag">Excel</span><span class="tag">P&amp;L</span><span class="tag">KPI Design</span></div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">Jul 2016 — Sep 2018</div>
+        <div>
+          <div class="exp-role">Production Supervisor</div>
+          <div class="exp-org">Shrey Components</div>
+          <ul>
+            <li>Built Excel dashboards tracking output trends, defect ratios and machine downtime.</li>
+            <li>Standardised reporting improved on-time completion by 8% within one quarter.</li>
+            <li>Applied Lean/Kaizen principles to prioritise improvements by cost impact.</li>
+          </ul>
+          <div class="tagrow"><span class="tag">Excel</span><span class="tag">Ops Analytics</span><span class="tag">Lean/Kaizen</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-head">
+        <div class="eyebrow">Analytics Toolkit</div>
+        <h2>Skills</h2>
+      </div>
+      <div class="skillgrid">
+        <div class="skillcard">
+          <h4>Data Querying</h4>
+          <div class="items"><span>SQL</span><span>MS SQL Server</span><span>CTEs</span><span>Window Functions</span><span>Star Schema</span><span>Data Modelling</span></div>
+        </div>
+        <div class="skillcard">
+          <h4>Visualisation &amp; BI</h4>
+          <div class="items"><span>Power BI</span><span>DAX Measures</span><span>Power Query (M)</span><span>KPI Dashboards</span><span>Drill-Through</span></div>
+        </div>
+        <div class="skillcard">
+          <h4>Python Analytics</h4>
+          <div class="items"><span>Python</span><span>Pandas</span><span>Matplotlib</span><span>Seaborn</span><span>EDA Pipelines</span></div>
+        </div>
+        <div class="skillcard">
+          <h4>Spreadsheets</h4>
+          <div class="items"><span>Excel</span><span>Financial Modelling</span><span>Pivot Tables</span><span>VLOOKUP</span><span>INDEX-MATCH</span></div>
+        </div>
+        <div class="skillcard">
+          <h4>Commercial</h4>
+          <div class="items"><span>P&amp;L Management</span><span>Revenue Analytics</span><span>Margin Optimisation</span><span>Category Analytics</span><span>Vendor Scoring</span></div>
+        </div>
+        <div class="skillcard">
+          <h4>Industry Context</h4>
+          <div class="items"><span>BFSI</span><span>Retail / FMCG</span><span>Manufacturing</span><span>Automotive</span><span>E-Commerce</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-head">
+        <div class="eyebrow">Real Projects</div>
+        <h2>Case Studies</h2>
+      </div>
+      <div class="projects">
+
+        <div class="project featured">
+          <div>
+            <div class="project-meta"><span class="project-cat">Retail · SQL · Power BI</span><span class="tag">Featured</span></div>
+            <h3>Retail Merchandising Analytics</h3>
+            <p>End-to-end retail merchandising analytics system with star schema modelling, vendor analysis, promotional lift evaluation and merchant dashboards built for decision support.</p>
+            <div class="project-impact">
+              <div><div class="n">500K+</div><div class="l">Rows</div></div>
+              <div><div class="n">6</div><div class="l">SQL Queries</div></div>
+              <div><div class="n">5</div><div class="l">Dashboard Tabs</div></div>
+            </div>
+          </div>
+          <div class="project-side">
+            <a class="btn-outline" href="https://github.com/Yusufmd24/Retail-Merchandising-Analytics" target="_blank" rel="noopener">View Repo →</a>
+          </div>
+        </div>
+
+        <div class="project">
+          <div>
+            <div class="project-meta"><span class="project-cat">BFSI · Power BI</span></div>
+            <h3>Credit Card Fraud Analysis</h3>
+            <p>Interactive fraud analysis dashboard and investigation workflow across transaction-level data.</p>
+            <div class="project-impact">
+              <div><div class="n">10K+</div><div class="l">Transactions</div></div>
+              <div><div class="n">40%</div><div class="l">Review Saved</div></div>
+            </div>
+          </div>
+          <div class="project-side">
+            <a class="btn-outline" href="https://github.com/Yusufmd24/Power-BI-Credit-Card-Fraud-Analysis-Dashboard" target="_blank" rel="noopener">View Repo →</a>
+          </div>
+        </div>
+
+        <div class="project">
+          <div>
+            <div class="project-meta"><span class="project-cat">Data Pipeline · Python · SQL</span></div>
+            <h3>Full Stack Data Analytics Project</h3>
+            <p>Python → SQL → BI pipeline processing large-scale business data and surfacing margin opportunities.</p>
+            <div class="project-impact">
+              <div><div class="n">400K+</div><div class="l">Rows</div></div>
+              <div><div class="n">5–12%</div><div class="l">Margin</div></div>
+            </div>
+          </div>
+          <div class="project-side">
+            <a class="btn-outline" href="https://github.com/Yusufmd24/Full-Stack-Data-Analytics-Project-E-Commerce-Pipeline-with-Python-SQL-Power-BI" target="_blank" rel="noopener">View Repo →</a>
+          </div>
+        </div>
+
+        <div class="project">
+          <div>
+            <div class="project-meta"><span class="project-cat">SQL · Customer Analytics</span></div>
+            <h3>SQL Customer Segmentation</h3>
+            <p>SQL-driven segmentation and behavioural analysis for customer grouping and targeting.</p>
+          </div>
+          <div class="project-side">
+            <a class="btn-outline" href="https://github.com/Yusufmd24/Customer-Segmentation-Project-with-SQL" target="_blank" rel="noopener">View Repo →</a>
+          </div>
+        </div>
+
+        <div class="project">
+          <div>
+            <div class="project-meta"><span class="project-cat">Python · Market Analysis</span></div>
+            <h3>Indian Hotel Market Analysis</h3>
+            <p>Market and hospitality analytics project exploring trends and business insights.</p>
+          </div>
+          <div class="project-side">
+            <a class="btn-outline" href="https://github.com/Yusufmd24/Python-Indian-Hotel-Market-Analysis" target="_blank" rel="noopener">View Repo →</a>
+          </div>
+        </div>
+
+        <div class="project">
+          <div>
+            <div class="project-meta"><span class="project-cat">Excel · E-Commerce</span></div>
+            <h3>Excel E-Commerce Analytics</h3>
+            <p>Excel-based business analysis and KPI reporting for e-commerce performance tracking.</p>
+          </div>
+          <div class="project-side">
+            <a class="btn-outline" href="https://github.com/Yusufmd24/Excel-E-Commerce-Analytics-Project" target="_blank" rel="noopener">View Repo →</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-head">
+        <div class="eyebrow">About</div>
+        <h2>The Person Behind the Data</h2>
+      </div>
+      <div class="about-grid">
+        <div class="avatar">MY</div>
+        <div>
+          <h3>Md Yusuf</h3>
+          <div class="role">Data Analyst — Kolkata, India</div>
+          <p style="color:var(--ink-soft); font-size:15px; max-width:560px;">A business-first analyst with a B.Tech in Automotive Engineering and a Smart Data Analytics certification (Distinction) from Aptech, backed by IBM and Cisco credentials. Prior to analytics, I spent 7+ years in operational leadership across events and manufacturing — owning budgets, vendor costs and revenue outcomes. That commercial grounding now shapes how I approach every dataset: as a decision to be made, not just a metric to report.</p>
+          <div class="hero-cta" style="margin-top:22px;">
+            <a class="btn" href="#contact">Get in Touch</a>
+            <a class="btn-outline" href="https://github.com/Yusufmd24" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="section-head">
+        <div class="eyebrow">Academic Record</div>
+        <h2>Education</h2>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-top">
+          <div><div class="edu-title">Advanced Program in Smart Data Analytics with Power BI</div><div class="edu-sub">Aptech Learning — Kolkata, West Bengal</div></div>
+          <div class="edu-year">2025 – 2026 · Distinction</div>
+        </div>
+        <ul class="edu-list">
+          <li>Data Analysis with Python (Pandas, NumPy, Matplotlib)</li>
+          <li>SQL &amp; Database Management (MS SQL Server)</li>
+          <li>Power BI — DAX, Power Query, Dashboard Design</li>
+          <li>Statistical Methods &amp; Predictive Analytics</li>
+          <li>Business Intelligence &amp; KPI Reporting</li>
+        </ul>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-top">
+          <div><div class="edu-title">B.Tech, Automotive Engineering Technology</div><div class="edu-sub">WBUT — Kolkata, West Bengal</div></div>
+          <div class="edu-year">2012 – 2016 · DGPA 8.03</div>
+        </div>
+        <ul class="edu-list">
+          <li>Mechanical Systems, CAD/CAM Design</li>
+          <li>Manufacturing Processes &amp; Quality Control</li>
+          <li>Industrial Engineering &amp; Operations Research</li>
+          <li>Business Analytics &amp; Decision Sciences</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications">
+      <div class="section-head">
+        <div class="eyebrow">Verified Credentials</div>
+        <h2>Certifications</h2>
+      </div>
+      <div class="certgrid">
+        <div class="certcard"><h4>Data Science Essentials with Python</h4><div class="sub">Machine learning &amp; statistical analysis</div><span class="badge">IBM Verified</span></div>
+        <div class="certcard"><h4>Enterprise Data Science in Practice</h4><div class="sub">Applied data science, business context</div><span class="badge">IBM Verified</span></div>
+        <div class="certcard"><h4>Data Science Methodologies</h4><div class="sub">CRISP-DM, analytical workflow</div><span class="badge">IBM Verified</span></div>
+        <div class="certcard"><h4>Agile Explorer</h4><div class="sub">Agile methodology, scrum fundamentals</div><span class="badge">IBM Verified</span></div>
+        <div class="certcard"><h4>Networking Essentials</h4><div class="sub">Network fundamentals, TCP/IP</div><span class="badge">Cisco Verified</span></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-head">
+        <div class="eyebrow">Get in Touch</div>
+        <h2>Contact</h2>
+      </div>
+      <div class="contact-grid">
+        <form onsubmit="event.preventDefault(); this.reset(); alert('Thanks — I will get back to you soon.');">
+          <div class="field"><label for="name">Name</label><input id="name" type="text" required></div>
+          <div class="field"><label for="email">Email</label><input id="email" type="email" required></div>
+          <div class="field"><label for="message">Message</label><textarea id="message" required></textarea></div>
+          <button class="btn" type="submit" style="border:none; cursor:pointer;">Send Message</button>
+        </form>
+        <div class="contact-info">
+          <div class="row"><div class="label">Email</div><a href="mailto:mdyusuf911@gmail.com">mdyusuf911@gmail.com</a></div>
+          <div class="row"><div class="label">LinkedIn</div><a href="https://www.linkedin.com/in/md-yusuf-2409" target="_blank" rel="noopener">md-yusuf-2409</a></div>
+          <div class="row"><div class="label">GitHub</div><a href="https://github.com/Yusufmd24" target="_blank" rel="noopener">Yusufmd24</a></div>
+          <div class="row"><div class="label">Location</div><span>Kolkata, West Bengal, India</span></div>
+          <div class="row"><div class="label">Status</div><span>Open to opportunities</span></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom:10px;">Md Yusuf</div>
+        <p style="color:var(--ink-soft); font-size:14px; max-width:320px;">Data Analyst turning transactional data into commercial decisions. Based in Kolkata, open to BFSI, Retail and SaaS analytics roles.</p>
+        <div class="footer-social">
+          <a class="icon-link" href="https://github.com/Yusufmd24" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.79-.25.79-.55 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.77.12 3.06.74.8 1.19 1.83 1.19 3.09 0 4.43-2.7 5.41-5.27 5.69.42.36.78 1.08.78 2.18 0 1.57-.01 2.84-.01 3.23 0 .3.21.66.79.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+          </a>
+          <a class="icon-link" href="https://www.linkedin.com/in/md-yusuf-2409" target="_blank" rel="noopener">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.11 20.45H3.56V9h3.55v11.45z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h5>Site</h5>
+        <a href="#work">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+      </div>
+      <div>
+        <h5>Elsewhere</h5>
+        <a href="https://github.com/Yusufmd24" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/md-yusuf-2409" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:mdyusuf911@gmail.com">Email</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Md Yusuf</span>
+      <span>Kolkata, India</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
