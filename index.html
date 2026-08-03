@@ -166,7 +166,7 @@
   .projects{display:flex; flex-direction:column; gap:18px;}
   .project{
     border:1px solid var(--line); border-radius:var(--radius); background:var(--surface);
-    padding:26px; display:grid; grid-template-columns:1fr auto; gap:20px; align-items:start;
+    padding:26px; display:grid; grid-template-columns:1fr auto; gap:20px; align-items:stretch;
   }
   .project.featured{border-color:var(--accent);}
   .project-meta{display:flex; gap:10px; align-items:center; margin-bottom:10px;}
@@ -177,7 +177,13 @@
   .project-impact div{text-align:left;}
   .project-impact .n{font-family:"Fraunces",serif; font-weight:600; font-size:20px;}
   .project-impact .l{font-size:11.5px; color:var(--ink-soft); text-transform:uppercase;}
-  .project-side{display:flex; flex-direction:column; align-items:flex-end; gap:12px;}
+  .project-side{
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    align-items:flex-end;
+    height:100%;
+}
   .project-kpis{
     display:grid;
     grid-template-columns:repeat(4, minmax(90px, 110px));
