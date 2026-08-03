@@ -156,7 +156,7 @@
  /* Skills */
 .skillgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
 .skillcard{border:1px solid var(--line); border-radius:var(--radius); padding:20px; background:var(--surface);}
-.skillcard h4{font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--accent); margin:0 0 12px;}
+
 .skillcard .items{
     display:flex;
     flex-wrap:wrap;
@@ -189,7 +189,7 @@
 .skillcard .items span::after{
     content:none;
 }
-  }
+  
   /* Collapsible Skills */
 
 .skillcard summary{
@@ -534,6 +534,7 @@
         <div class="eyebrow">Analytics Toolkit</div>
         <h2>Core Competencies</h2>
       </div>
+      <div class="skillgrid">
         <details class="skillcard" open>
     <summary>🗄️ Data Querying</summary>
 
@@ -609,6 +610,7 @@
         <span>Automotive</span>
         <span>E-Commerce</span>
     </div>
+          
 </details>
       </div>
     </section>
