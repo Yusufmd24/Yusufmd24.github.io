@@ -190,7 +190,41 @@
     content:none;
 }
   }
-  
+  /* Collapsible Skills */
+
+.skillcard summary{
+    list-style:none;
+    cursor:pointer;
+    user-select:none;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--accent);
+    font-weight:600;
+}
+
+.skillcard summary::-webkit-details-marker{
+    display:none;
+}
+
+.skillcard summary::after{
+    content:"▾";
+    font-size:15px;
+    transition:.25s ease;
+}
+
+.skillcard:not([open]) summary::after{
+    transform:rotate(-90deg);
+}
+
+.skillcard .items{
+    margin-top:14px;
+}
   /* Projects */
   .projects{display:flex; flex-direction:column; gap:18px;}
   .project{
