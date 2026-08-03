@@ -157,9 +157,38 @@
 .skillgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
 .skillcard{border:1px solid var(--line); border-radius:var(--radius); padding:20px; background:var(--surface);}
 .skillcard h4{font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--accent); margin:0 0 12px;}
-.skillcard .items{display:flex; flex-wrap:wrap; gap:6px;}
-.skillcard .items span{font-size:13px; color:var(--ink-soft);}
-.skillcard .items span:not(:last-child)::after{content:"·"; margin-left:6px; color:var(--line);
+.skillcard .items{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.skillcard .items span{
+    display:inline-flex;
+    align-items:center;
+
+    padding:8px 14px;
+
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:999px;
+
+    font-size:12px;
+    font-weight:500;
+    color:var(--ink);
+
+    transition:.2s ease;
+}
+
+.skillcard .items span:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+    transform:translateY(-1px);
+}
+
+.skillcard .items span::after{
+    content:none;
+}
   }
   
   /* Projects */
