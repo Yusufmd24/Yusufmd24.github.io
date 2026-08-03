@@ -243,9 +243,12 @@
   .project-side{
     display:flex;
     flex-direction:column;
-    justify-content:flex-end;
+    justify-content:space-between;
     align-items:flex-end;
-    height:100%;
+
+    min-width:330px;
+    gap:16px;
+}
 }
   .project-kpis{
     display:grid;
@@ -276,23 +279,22 @@
     text-transform:uppercase;
     letter-spacing:.05em;
 }
-  .project-preview{
-    margin:18px 0;
-    overflow:hidden;
+ .project-preview{
+    width:320px;
+    border:1px solid var(--line);
     border-radius:12px;
+    overflow:hidden;
 }
 
 .project-preview img{
-    width:100%;
     display:block;
-    border:1px solid var(--line);
-    border-radius:12px;
-    transition:transform .3s ease, box-shadow .3s ease;
+    width:100%;
+    transition:.25s ease;
 }
 
-.project-preview img:hover{
+.project-preview:hover img{
     transform:scale(1.02);
-    box-shadow:0 12px 24px rgba(0,0,0,.12);
+}
 }
   @media(max-width:700px){
     .project-kpis{
@@ -669,7 +671,10 @@
     </div>
 
 </div>
-            <a class="project-preview"
+           
+          </div>
+          <div class="project-side">
+             <a class="project-preview"
    href="https://github.com/Yusufmd24/SaaS-Metrics-Intelligence-Dashboard"
    target="_blank"
    rel="noopener">
@@ -679,8 +684,6 @@
          loading="lazy">
 
 </a>
-          </div>
-          <div class="project-side">
             <a class="btn-outline" href="https://github.com/Yusufmd24/SaaS-Metrics-Intelligence-Dashboard" target="_blank">GitHub Repository →</a>
           </div>
         </div>
@@ -714,7 +717,10 @@
     </div>
 
 </div>
-            <a class="project-preview"
+           
+          </div>
+          <div class="project-side">
+             <a class="project-preview"
    href="https://github.com/Yusufmd24/Retail-Merchandising-Analytics"
    target="_blank"
    rel="noopener">
@@ -724,8 +730,6 @@
          loading="lazy">
 
 </a>
-          </div>
-          <div class="project-side">
             <a class="btn-outline" href="https://github.com/Yusufmd24/Retail-Merchandising-Analytics" target="_blank" rel="noopener">GitHub Repository →</a>
           </div>
         </div>
@@ -759,6 +763,9 @@
     </div>
 
 </div>
+
+          </div>
+          <div class="project-side">
             <a class="project-preview"
    href="https://github.com/Yusufmd24/Full-Stack-Data-Analytics-Project-E-Commerce-Pipeline-with-Python-SQL-Power-BI"
    target="_blank"
@@ -769,8 +776,6 @@
          loading="lazy">
 
 </a>
-          </div>
-          <div class="project-side">
             <a class="btn-outline" href="https://github.com/Yusufmd24/Full-Stack-Data-Analytics-Project-E-Commerce-Pipeline-with-Python-SQL-Power-BI" target="_blank" rel="noopener">GitHub Repository →</a>
           </div>
         </div>
