@@ -180,48 +180,39 @@
   .project-side{display:flex; flex-direction:column; align-items:flex-end; gap:12px;}
   .project-kpis{
     display:grid;
-    grid-template-columns:repeat(4,70px);
+    grid-template-columns:repeat(4, minmax(90px, 110px));
     gap:10px;
-    margin:14px 0 18px;
+    margin:16px 0 18px;
 }
 
 .kpi-card{
-    width:70px;
-    height:70px;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-
+    padding:12px 10px;
     border:1px solid var(--line);
     border-radius:10px;
     background:var(--bg);
-}
-
-.kpi-card:hover{
-    transform:translateY(-3px);
-    border-color:var(--accent);
+    text-align:center;
 }
 
 .kpi-value{
-    font-size:18px;
-    font-weight:700;
-    line-height:1;
+    font-family:"Fraunces", serif;
+    font-size:20px;
+    font-weight:600;
+    line-height:1.1;
 }
 
 .kpi-label{
-    margin-top:6px;
-    font-size:9px;
+    margin-top:5px;
+    font-size:10px;
+    color:var(--ink-soft);
     text-transform:uppercase;
-    letter-spacing:.08em;
+    letter-spacing:.05em;
 }
-
-@media(max-width:700px){
+  @media(max-width:700px){
     .project-kpis{
         grid-template-columns:repeat(2,1fr);
     }
 }
+  
   /* About */
   .about-grid{display:grid; grid-template-columns:200px 1fr; gap:40px; align-items:start;}
   .avatar{
