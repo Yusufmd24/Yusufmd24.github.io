@@ -332,6 +332,22 @@
 
   .certgrid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
   .certcard{border:1px solid var(--line); border-radius:var(--radius); padding:18px; background:var(--surface);}
+  .certcard{
+    display:block;
+    text-decoration:none;
+    color:inherit;
+    transition:.2s ease;
+}
+
+.certcard:hover{
+    transform:translateY(-3px);
+    border-color:var(--accent);
+    box-shadow:0 10px 24px rgba(0,0,0,.08);
+}
+
+.certcard h4{
+    color:inherit;
+}
   .certcard h4{font-size:15px; margin:0 0 6px;}
   .certcard .sub{font-size:12.5px; color:var(--ink-soft);}
   .certcard .badge{
@@ -987,12 +1003,34 @@
         <h2>Certifications</h2>
       </div>
       <div class="certgrid">
-        <div class="certcard"><h4>Data Analytics Essentials</h4><div class="sub">Data Analytics , Quantitative Analysis</div><span class="badge">CISCO Verified</span></div>
-        <div class="certcard"><h4>Enterprise Data Science in Practice</h4><div class="sub">Applied data science , Analytical Frameworks</div><span class="badge">IBM Verified</span></div>
-        <div class="certcard"><h4>Machine Learning for Data Science</h4><div class="sub">CRISP-DM , Analytical Workflow</div><span class="badge">IBM Verified</span></div>
-        <div class="certcard"><h4>SAS SQL Essentials</h4><div class="sub">SQL , Database Querying</div><span class="badge">SAS Verified</span></div>
-        <div class="certcard"><h4>Data Analysis Using Python</h4><div class="sub">Python , Exploratory Data Analysis (EDA)</div><span class="badge">IBM Verified</span></div>
-        <div class="certcard"><h4>Creating Compelling Reports</h4><div class="sub">Business Reporting , Dashboarding</div><span class="badge">Cisco Verified</span></div>
+        <a class="certcard" href="https://www.credly.com/earner/earned/badge/f1d43318-43e5-45cf-835f-a2d86bc6bd70" target="_blank" rel="noopener">
+    <h4>Data Analytics Essentials ↗</h4>
+    <div class="sub">Data Analytics, Quantitative Analysis</div>
+    <span class="badge">CISCO Verified</span>
+</a>       <a class="certcard" href="https://www.credly.com/earner/earned/badge/ec2792f2-1471-459b-86ac-6ad1f99975dc" target="_blank" rel="noopener">
+    <h4>Enterprise Data Science in Practice ↗</h4>
+    <div class="sub">Applied Data Science, Analytical Frameworks</div>
+    <span class="badge">IBM Verified</span>
+</a>
+        <a class="certcard" href="https://www.credly.com/earner/earned/badge/4ddb17b2-0fc7-4cf1-a145-5cb22214134a" target="_blank" rel="noopener">
+    <h4>Machine Learning for Data Science ↗</h4>
+    <div class="sub">CRISP-DM, Analytical Workflow</div>
+    <span class="badge">IBM Verified</span>
+</a>        <a class="certcard" href="https://www.credly.com/earner/earned/badge/6e2641ed-b0d5-4de7-a999-9b9fa0ba48da" target="_blank" rel="noopener">
+    <h4>SAS SQL Essentials ↗</h4>
+    <div class="sub">SQL, Database Querying</div>
+    <span class="badge">SAS Verified</span>
+</a>
+        <a class="certcard" href="https://www.credly.com/earner/earned/badge/63d70cfb-1a9b-41a2-866e-c21d9f41340a" target="_blank" rel="noopener">
+    <h4>Data Analysis Using Python ↗</h4>
+    <div class="sub">Python, Exploratory Data Analysis (EDA)</div>
+    <span class="badge">IBM Verified</span>
+</a>
+        <a class="certcard" href="https://www.credly.com/earner/earned/badge/fdde4955-ea3d-4c3e-b4a5-5ed0de77f400" target="_blank" rel="noopener">
+    <h4>Creating Compelling Reports ↗</h4>
+    <div class="sub">Business Reporting, Dashboarding</div>
+    <span class="badge">Cisco Verified</span>
+</a>
       </div>
     </section>
 
